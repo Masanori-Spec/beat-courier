@@ -30,6 +30,8 @@ R3 then completed the wizard and normal first-run exit. Its actual Audio/MIDI me
 
 R4 visibly reached that backend and the editor, where a locked-memory informational dialog blocked the menu. The harness acknowledges only that exact observed warning through its unique native OK button. It does not change memory limits or select the dialog's “Do not show this window again” checkbox. The original screenshot and acknowledgement record remain in evidence. Tesseract TSV is parsed without CSV quote interpretation, so a recognized quotation-mark glyph cannot consume later OCR rows.
 
+R6 reached the unchanged native file-import API and failed the literal tempo assertion at quarter 8. Compatibility has not passed. The diagnostic script now prints all six actual map values and performs the normal native save before checking its expected-value flag, so a mismatch retains the complete consumer-produced map. The host still requires every literal query, the completion marker, the independent XML oracle and fresh-process reload. Saving a failed diagnostic does not count as acceptance, and no session map is rewritten by the harness.
+
 ## Precision boundary
 
 Ardour 8.12's `Editor::import_smf_tempo_map` rounds MIDI pulses to whole quarter notes with `int_div_round`. The first product profile therefore must reject fractional-quarter changes, including 15.5. Ardour 9.2 instead delegates to `Evoral::SMF::tempo_map`, which constructs fractional native beat ticks. That source finding is not a runtime test of 9.2.

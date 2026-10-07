@@ -181,18 +181,22 @@ def run_lua(script,label):
     output=command('xclip','-selection','clipboard','-o')
     assert output!=sentinel and output!=script and 'Editor:do_import' not in output and 'print(' not in output,'Output copy is missing or echoes pasted editor code'
     (ART/f'{label}-lua-output.txt').write_text(output)
+    saved_path=ROOT/'target/Target.ardour'
+    assert saved_path.is_file() and saved_path.stat().st_size<4*1024*1024
+    shutil.copyfile(saved_path,ART/f'{label}-snapshot-before-host-check.ardour')
     lines=output.splitlines();observed=[]
     for line in lines:
         if line.startswith('NATIVE_Q '):
-            match=re.fullmatch(r'NATIVE_Q ([0-9]+) TEMPO ([0-9]+(?:\.[0-9]+)?) METER ([0-9]+)/4',line)
+            match=re.fullmatch(r'NATIVE_Q ([0-9]+) TEMPO ([0-9]+(?:\.[0-9]+)?) METER ([0-9]+(?:\.[0-9]+)?)/([0-9]+(?:\.[0-9]+)?)',line)
             assert match,'Malformed actual native query output'
-            observed.append((int(match[1]),Fraction(match[2]),int(match[3])))
+            assert Fraction(match[4])==4,'Actual native denominator differs'
+            observed.append((int(match[1]),Fraction(match[2]),Fraction(match[3])))
     expected=[(0,Fraction(120),4),(7,Fraction(120),4),(8,Fraction(100),4),(15,Fraction(100),4),(16,Fraction(150),3),(24,Fraction(150),3)]
     assert observed==expected,'Actual in-process native query lines differ from literal expectations'
     assert lines.count('BEATCOURIER_NATIVE_MAP_OK')==1 and lines.count('> OK')==1,'Standalone native completion required'
     snapshot(f'{label}-output-copied')
     command('xdotool','key','--clearmodifiers','Alt+F4');time.sleep(.5)
-    return [{'quarter':q,'quarterNotesPerMinute':str(tempo),'meter':[meter,4]} for q,tempo,meter in observed]
+    return [{'quarter':q,'quarterNotesPerMinute':str(tempo),'meter':[int(meter),4]} for q,tempo,meter in observed]
 def query_script(import_file):
     prefix=''
     if import_file:
@@ -204,14 +208,19 @@ Editor:do_import(files, Editing.ImportDistinctFiles, Editing.ImportAsTrack, ARDO
 local positions={0,7,8,15,16,24}
 local tempos={120,120,100,100,150,150}
 local meters={4,4,4,4,3,3}
+local all_expected=true
 for i,q in ipairs(positions) do
  local p=Temporal.timepos_t.from_ticks(q*1920)
- assert(math.abs(map:quarters_per_minute_at(p)-tempos[i])<0.000001)
- assert(map:meter_at(p):divisions_per_bar()==meters[i])
- assert(map:meter_at(p):note_value()==4)
- print('NATIVE_Q '..q..' TEMPO '..map:quarters_per_minute_at(p)..' METER '..meters[i]..'/4')
+ local actual_tempo=map:quarters_per_minute_at(p)
+ local actual_meter=map:meter_at(p):divisions_per_bar()
+ local actual_denominator=map:meter_at(p):note_value()
+ print('NATIVE_Q '..q..' TEMPO '..actual_tempo..' METER '..actual_meter..'/'..actual_denominator)
+ all_expected=all_expected and math.abs(actual_tempo-tempos[i])<0.000001 and actual_meter==meters[i] and actual_denominator==4
 end
 assert(Session:save_state('',false,false,false,false,false)==0)
+print('BEATCOURIER_NATIVE_DIAGNOSTIC_SAVED')
+print('BEATCOURIER_NATIVE_EXPECTED '..tostring(all_expected))
+assert(all_expected)
 print('BEATCOURIER_NATIVE_MAP_OK')
 """
 def normal_exit(proc,label):
