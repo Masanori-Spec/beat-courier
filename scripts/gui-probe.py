@@ -156,10 +156,12 @@ def lua_window(label):
     command('xdotool','windowactivate',window);time.sleep(.6)
     assert command('xdotool','getactivewindow').strip()==window
     r=geometry(window);assert r[2:]==[1100,850] and r[0]>=0 and r[1]>=0 and r[0]+r[2]<=1600 and r[1]+r[3]<=1000
+    (ART/f'{label}-lua-window.json').write_text(json.dumps({'windowId':window,'nativeTitle':command('xdotool','getwindowname',window).strip(),'geometry':r},indent=2)+'\n')
     return window,r
 def run_lua(script,label):
     window,frame=lua_window(label);words=pixel_state(f'{label}-lua-before')
-    run=pixels.unique_phrase(words,'Run')['rect'];clear=pixels.unique_phrase(words,'Clear Output')['rect']
+    run_label,clear_label=pixels.toolbar_labels(ART/f'{label}-lua-before.png',words,frame)
+    run=run_label['rect'];clear=clear_label['rect']
     assert abs(run[1]-clear[1])<15 and frame[1]+frame[3]*.5<run[1]<frame[1]+frame[3]*.9
     # The native source places the editable pane above Run/Clear and the
     # noneditable output below. Both actions use observed native geometry.
@@ -167,7 +169,8 @@ def run_lua(script,label):
     paste(script);command('xdotool','key','--clearmodifiers','ctrl+a');command('xdotool','key','--clearmodifiers','ctrl+c')
     assert command('xclip','-selection','clipboard','-o').rstrip('\n')==script.rstrip('\n'),'Actual native editor paste differs'
     click_box(run);time.sleep(2);words=pixel_state(f'{label}-lua-result')
-    run=pixels.unique_phrase(words,'Run')['rect'];clear=pixels.unique_phrase(words,'Clear Output')['rect']
+    run_label,clear_label=pixels.toolbar_labels(ART/f'{label}-lua-result.png',words,frame)
+    run=run_label['rect'];clear=clear_label['rect']
     assert abs(run[1]-clear[1])<15
     output_top=run[1]+run[3]+15;output_bottom=frame[1]+frame[3]-20
     assert output_bottom-output_top>80,'Native output pane not fully usable'
