@@ -24,6 +24,8 @@ The target is a separately native-created empty session with only its initial 12
 
 The native GUI's Scripting console is a test-only means of invoking the unchanged native API. This is not manual-GUI fixture authoring, a copied native parser, or evidence from a rewritten target XML file. The fixed script is pasted as text; no sandbox preference is changed. Screenshots, accessibility trees, logs, original MIDI, native-authored and native-saved XML, and the final report are retained. Only a complete reviewed report can clear this consumer compatibility checkpoint.
 
+The first hosted run reached the normal welcome wizard and passed native fixture authoring, but its accessibility tree exposed only the desktop. The second harness reads actual native control labels with bounded OCR, then clicks their observed coordinates. Raw screenshots, thresholded OCR derivatives, word confidence/geometry and X11 titles are retained. The source-confirmed lower output pane is physically selected and copied only after a fresh clipboard sentinel. Editor/source echoes are rejected, and the six anchored native query lines, standalone completion and native `> OK` are still required. Native XML and fresh-process assertions are unchanged. This repair is an automation route, not a change to the consumer or evidence of successful import.
+
 ## Precision boundary
 
 Ardour 8.12's `Editor::import_smf_tempo_map` rounds MIDI pulses to whole quarter notes with `int_div_round`. The first product profile therefore must reject fractional-quarter changes, including 15.5. Ardour 9.2 instead delegates to `Evoral::SMF::tempo_map`, which constructs fractional native beat ticks. That source finding is not a runtime test of 9.2.
