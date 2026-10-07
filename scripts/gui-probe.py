@@ -83,6 +83,12 @@ def initialize_profile():
                 assert proc.wait(timeout=20)==0,'First-run normal quit failed'
                 return
             if has(words,'Ardour is ready for use'):
+                # R2 pixels show Apply's dotted keyboard-focus ring contaminating
+                # its OCR box. Move focus once, then require the same unique
+                # high-confidence label before the physical click.
+                command('xdotool','key','--clearmodifiers','Tab')
+                words=pixel_state(f'first-run-{step:02d}-ready-refocused')
+                assert has(words,'Ardour is ready for use')
                 click_label(words,'Apply');continue
             if has(words,'Welcome to Ardour') or has(words,'Default folder for new sessions'):
                 click_label(words,'Forward');continue
