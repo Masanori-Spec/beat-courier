@@ -1,33 +1,43 @@
-# BeatCourier — stepped conductor MIDI
+# BeatCourier
 
-BeatCourier is a bounded offline converter from a saved modern Ardour session's stepped tempo and meter map to a metadata-only Standard MIDI File. The production core passed its native gate. This revision adds a standalone offline UI candidate; actual browser-download acceptance is pending its hosted run.
+BeatCourier turns supported stepped tempo and meter changes in a saved Ardour session into a note-free conductor MIDI file. It runs offline in your browser and leaves the original session unchanged.
 
-The initial compatibility checkpoint passed with official Debian13 Ardour **8.12.0+ds-1**: a literal conductor file went through the unchanged native GUI importer, native save and a fresh-process reload. [Accepted run](https://github.com/Masanori-Spec/beat-courier/actions/runs/37598034673), commit `4dcb13efa45ce161d63454ffcfcbd00d6ce9be8a`. That first checkpoint used a handwritten MIDI fixture. The production converter then passed [run 37601909063](https://github.com/Masanori-Spec/beat-courier/actions/runs/37601909063) at commit `d7d3736d3c1ecfdb70b911be2b591db9f24cdab6`: eight actual import/reload cases, 120 native readings, all point arrays and three exact faults were independently accepted.
+Open [the standalone HTML](dist/beat-courier.html), choose one saved `.ardour` file, review every change and rounding value, then save the MIDI and its JSON receipt. The interface supports Japanese and English, keyboard controls, cancellation, printable review and a clean offline copy of the tool.
+
+![BeatCourier English review](docs/evidence/browser/01-en-desktop.png)
 
 ## Supported profile
 
-- Saved UTF-8 XML Session version7003, at most4 MiB, with the verified native clock rate
-- Every tempo and meter change, starting at quarter0; constant tempos only, with explicit ramp/endpoint/omega checks
-- Whole-quarter positions only. Tempo changes must also lie on native meter beats; meter changes must start native bars. Quarter15.5 rejects rather than moving
-- Empty MusicTimes. BBT resets and native-resaved import files containing terminal import markers are unsupported inputs
-- Power-of-two tempo-note and meter-denominator values1–64; meter numerator1–127, reflecting Ardour's signed-byte representation as well as MIDI limits
-- Exact1920-PPQN positions and rational tempo-note conversion. Microseconds per quarter use nearest-integer rounding, with exact value/error in the receipt
-- One format0 conductor track containing only FF51 tempo, FF58 meter and end-of-track. No notes, audio, session modification or workspace scan
+- UTF-8 Session version 7003 XML, up to 4 MiB, with the verified Ardour clock rate
+- Complete stepped tempo and meter maps beginning at quarter 0; constant tempos only
+- Whole-quarter positions. Tempo changes must also lie on native meter beats, and meter changes must start native bars. Fractional positions such as 15.5 are rejected without moving them
+- Empty MusicTimes. BBT resets and native-resaved imported sessions containing terminal import markers are unsupported inputs
+- Power-of-two tempo-note values and meter denominators from 1 to 64; meter numerators from 1 to 127; up to 2,048 points of each kind
+- Format 0, one conductor track, 1920 PPQN, tempo/time-signature metadata and end-of-track only. No notes or audio
 
-The inert XML parser rejects DTD/entity declarations, other processing instructions, malformed XML, namespaces, ambiguous structures and bounded-resource violations. It does not load a session into Ardour or execute anything from an input file. The native tests load only original synthetic fixtures in disposable hosted-CI directories.
+Positions use exact integer/rational arithmetic. Tempo values are converted from their source note unit into microseconds per quarter note and rounded to the nearest integer. The review and receipt expose the exact fraction and error. Beat positions remain exact; elapsed time can differ slightly after tempo rounding.
 
-Ardour already exports MIDI. [ArdourMIDIExport](https://github.com/dbolton/ArdourMIDIExport) also exists and documents an initial-tempo/meter limitation. BeatCourier's modest difference is exporting all supported saved-map changes as a separate conductor. It is not a general MIDI export replacement or a claim of universal DAW compatibility. Ardour9.2 has different fractional-position import code; it is outside the executed8.12 profile.
+The inert parser rejects DTD/entity declarations, other processing instructions, namespaces, malformed or ambiguous data and bounded-resource violations. Parsing and hashing run in a Web Worker with an eight-second limit. Replacement, clear and cancellation invalidate pending results and terminate the worker. The tool does not execute a session, plugin or media, scan a workspace, or send input data to a server.
 
-## Offline interface
+## Why a separate conductor file?
 
-Open `dist/beat-courier.html` in a modern browser. Choose one saved session, review every event and tempo rounding value, confirm, then save the MIDI and JSON receipt. Japanese and English, keyboard controls, printable review and a clean offline-tool download are included. Parsing and hashing run in a bounded Web Worker that is terminated on cancellation, replacement or timeout. No session, plugin or media is executed; files are not sent to a server.
+Ardour already exports MIDI. The existing [ArdourMIDIExport](https://github.com/dbolton/ArdourMIDIExport/blob/534f1af45c28696e6cd03b63da99c0732ec2fbf0/README.md) approach combines MIDI tracks and documents an initial-tempo/meter limitation. BeatCourier's modest difference is collecting every supported saved-map change into a separate conductor file. It is not a general replacement for native MIDI export or a universal DAW compatibility claim.
 
-The candidate browser workflow tests actual file downloads, worker/read races, same-file reselection, errors, mobile horizontal review, print and offline privacy. Its actual MIDI and receipt must then pass the same independent native eight-case gate. See [the UI acceptance contract](docs/browser-gate.md).
+## Verified behavior
 
-## Verification
+The actual browser download passed the unchanged production importer in official Debian 13 Ardour **1:8.12.0+ds-1**, followed by native save and fresh-process reload. The test uses original synthetic sessions, a Dummy backend and the native Scripting interface to invoke `PublicEditor::do_import` with the real file. It does not replace the importer, rewrite the resulting session map, or claim to exercise the import dialog's buttons.
 
-`npm ci --ignore-scripts` and `npm test` run pure converter checks. The hosted workflow adds independent Python/Mido wire checks, native Lua-authored expanded fixtures, actual production MIDI imports, native saves and fresh GUI processes. Three single-fault MIDI controls must show exact wrong tempo, meter or event position. Fractional15.5, ramps and BBT inputs must reject before output. See [the production gate contract](docs/production-gate.md) and [the preserved compatibility contract](docs/native-contract.md).
+- 39 sandboxed browser cases, including actual downloads, same-file reselection, delayed reads, stale real-worker results, cancellation, timeout, errors and offline privacy
+- Japanese/English desktop and 390 px / 320 px viewport reviews, horizontal table access, and complete one-page print reviews
+- Eight native cases and 120 literal map readings for the actual browser MIDI: positive import/reload plus exact tempo, meter and shifted-event faults
+- Every saved tempo/meter position, clock and BBT coordinate; exact 106-byte fixture MIDI and all 10 receipt entries; unchanged source bytes
 
-Native tempo lookups return the preceding segment at an exact boundary; the gate checks both the literal saved point and one tick after it. The native importer creates a narrowly enumerated terminal marker that changes its quarter coordinate on reload. Those output observations do not relax input rejection. Successful compatibility logs include nonfatal GTK/GObject diagnostics around closure; normal exit0 is proven, not error-free logs.
+See [the release verification record](docs/RELEASE.md), [browser report](docs/evidence/browser/browser-report.json), [native report](docs/evidence/native/full-native-report.json), and [evidence provenance](docs/evidence/provenance.json). Runtime evidence comes from [the accepted browser/native run](https://github.com/Masanori-Spec/beat-courier/actions/runs/37610052361), with separate [production-core](https://github.com/Masanori-Spec/beat-courier/actions/runs/37610052160) and [compatibility-probe](https://github.com/Masanori-Spec/beat-courier/actions/runs/37610052181) runs.
 
-No license grant for original code or fixtures is made. Dependency licensing is recorded in [third-party notices](THIRD_PARTY_NOTICES.md). Public source contains no Ardour binary or package archive.
+The executed native profile is Ardour 8.12, not 9.2. Native exact-boundary lookup and terminal-marker normalization are documented in the gate contracts. Successful native logs retain nonfatal GTK/GObject diagnostics around closure; normal exit 0 is proven, not error-free logs. Browser viewport tests are not physical-device tests.
+
+## Development
+
+Run `npm ci --ignore-scripts`, then `npm run verify` for the pure tests and reproducible standalone build. Hosted workflows run the real sandboxed browser and pinned native consumer. See the [production gate](docs/production-gate.md), [browser gate](docs/browser-gate.md), and [original compatibility probe](docs/native-contract.md).
+
+No license grant is made for original BeatCourier code or fixtures. The bundled XML dependency's license is retained in [third-party notices](THIRD_PARTY_NOTICES.txt). Public source contains no Ardour binary or package archive.

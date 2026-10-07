@@ -1,0 +1,36 @@
+{
+  "distribution": "Debian 13 trixie",
+  "trust": "Default authenticated Debian APT metadata; no authentication bypass or new trust keys",
+  "packages": [
+    {
+      "name": "ardour",
+      "version": "1:8.12.0+ds-1",
+      "source": "ardour",
+      "architecture": "amd64",
+      "filename": "pool/main/a/ardour/ardour_8.12.0+ds-1_amd64.deb",
+      "size": 16223364,
+      "sha256": "7713c7c87b9ba7dd8560471c088a96953f4f4d4bda76cf72b865299a48d20af8",
+      "identityVerifiedBeforeInstall": true
+    },
+    {
+      "name": "ardour-data",
+      "version": "1:8.12.0+ds-1",
+      "source": "ardour",
+      "architecture": "all",
+      "filename": "pool/main/a/ardour/ardour-data_8.12.0+ds-1_all.deb",
+      "size": 4946408,
+      "sha256": "b7b7c19d1fee95b55eb30b5239bd02ed72fd0d3875f01086904949705af21b43",
+      "identityVerifiedBeforeInstall": true
+    },
+    {
+      "name": "ardour-lv2-plugins",
+      "version": "1:8.12.0+ds-1",
+      "source": "ardour",
+      "architecture": "amd64",
+      "filename": "pool/main/a/ardour/ardour-lv2-plugins_8.12.0+ds-1_amd64.deb",
+      "size": 59624,
+      "sha256": "e1401201181b699dd291354168b249f4f1f7088d82db608f04f1d0114a305c06",
+      "identityVerifiedBeforeInstall": true
+    }
+  ]
+}

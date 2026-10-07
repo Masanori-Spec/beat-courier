@@ -1,0 +1,324 @@
+{
+  "status": "PASS",
+  "cases": [
+    {
+      "name": "Initialized Japanese UI renders its labels with no input, review or export",
+      "passed": true
+    },
+    {
+      "name": "Real keyboard chooser imports into a worker and clears native file input for reselection",
+      "passed": true
+    },
+    {
+      "name": "Every literal position, tick, source eighth-note unit and changed meter is visible",
+      "passed": true
+    },
+    {
+      "name": "Eighth-note conversion shows75 quarter notes/minute and rounded tempo exposes its exact rational error",
+      "passed": true
+    },
+    {
+      "name": "Actual keyboard MIDI and receipt downloads match independent literal wire and exact rounding",
+      "passed": true
+    },
+    {
+      "name": "Repeated downloads preserve exact MIDI and receipt bytes",
+      "passed": true
+    },
+    {
+      "name": "Choosing the same file again invalidates approval and previous receipt",
+      "passed": true
+    },
+    {
+      "name": "ja selected-language hover retains readable contrast",
+      "passed": true,
+      "contrast": 13.206958208866492
+    },
+    {
+      "name": "ja print preserves every map value and exact rounding fraction",
+      "passed": true,
+      "pages": 1
+    },
+    {
+      "name": "ja 390px has no page overflow and the full rounding column is reachable",
+      "passed": true,
+      "left": 34,
+      "right": 356,
+      "headerLeft": 205.4375,
+      "headerRight": 355,
+      "cellLeft": 205.4375,
+      "cellRight": 355,
+      "scroll": 610
+    },
+    {
+      "name": "ja 320px has no page overflow and the full rounding column is reachable",
+      "passed": true,
+      "left": 28,
+      "right": 292,
+      "headerLeft": 141.4375,
+      "headerRight": 291,
+      "cellLeft": 141.4375,
+      "cellRight": 291,
+      "scroll": 668
+    },
+    {
+      "name": "en selected-language hover retains readable contrast",
+      "passed": true,
+      "contrast": 13.206958208866492
+    },
+    {
+      "name": "en print preserves every map value and exact rounding fraction",
+      "passed": true,
+      "pages": 1
+    },
+    {
+      "name": "en 390px has no page overflow and the full rounding column is reachable",
+      "passed": true,
+      "left": 34,
+      "right": 356,
+      "headerLeft": 197.34375,
+      "headerRight": 355,
+      "cellLeft": 197.34375,
+      "cellRight": 355,
+      "scroll": 610
+    },
+    {
+      "name": "en 320px has no page overflow and the full rounding column is reachable",
+      "passed": true,
+      "left": 28,
+      "right": 292,
+      "headerLeft": 133.34375,
+      "headerRight": 291,
+      "cellLeft": 133.34375,
+      "cellRight": 291,
+      "scroll": 668
+    },
+    {
+      "name": "Removing confirmation invalidates the prior receipt",
+      "passed": true
+    },
+    {
+      "name": "Dispatched empty file change clears review and output",
+      "passed": true
+    },
+    {
+      "name": "native fractional15.5 rejects and cannot retain the old output",
+      "passed": true
+    },
+    {
+      "name": "ramp endpoint rejects and cannot retain the old output",
+      "passed": true
+    },
+    {
+      "name": "ramp omega rejects and cannot retain the old output",
+      "passed": true
+    },
+    {
+      "name": "BBT reset rejects and cannot retain the old output",
+      "passed": true
+    },
+    {
+      "name": "corrupt BBT rejects and cannot retain the old output",
+      "passed": true
+    },
+    {
+      "name": "tempo range rejects and cannot retain the old output",
+      "passed": true
+    },
+    {
+      "name": "DTD rejects and cannot retain the old output",
+      "passed": true
+    },
+    {
+      "name": "bad UTF8 rejects and cannot retain the old output",
+      "passed": true
+    },
+    {
+      "name": "old schema rejects and cannot retain the old output",
+      "passed": true
+    },
+    {
+      "name": "full-bound malformed XML rejects and cannot retain the old output",
+      "passed": true
+    },
+    {
+      "name": "oversize rejects and cannot retain the old output",
+      "passed": true
+    },
+    {
+      "name": "Subprecision nonzero tempo rounding shows a signed bound and exact fraction, never zero",
+      "passed": true
+    },
+    {
+      "name": "Chosen filename is rendered as inert text",
+      "passed": true
+    },
+    {
+      "name": "Clearing during a paused File read prevents stale review",
+      "passed": true
+    },
+    {
+      "name": "A later unsupported file wins over a delayed earlier valid read",
+      "passed": true
+    },
+    {
+      "name": "Keyboard cancellation terminates a paused worker and cannot resurrect its result",
+      "passed": true
+    },
+    {
+      "name": "Bounded worker timeout blocks output and terminates work",
+      "passed": true
+    },
+    {
+      "name": "A held actual compiled-worker result cannot replace a newer invalid input or enable downloads",
+      "passed": true
+    },
+    {
+      "name": "Verified sample uses the same worker and exact conductor bytes",
+      "passed": true
+    },
+    {
+      "name": "Clean offline copy excludes imported content and filename, then reopens with a working worker",
+      "passed": true
+    },
+    {
+      "name": "Keyboard clear removes input, review, approval and receipt",
+      "passed": true
+    },
+    {
+      "name": "Sandboxed offline main and saved pages use real blob workers with zero errors or network",
+      "passed": true
+    }
+  ],
+  "rejections": [
+    {
+      "name": "native fractional15.5",
+      "code": "FRACTIONAL_POSITION",
+      "sha256": "2844ac587dcfbd2c94aa572a32863c2f53bffca32c9d97872acacb6b2d8aadb8",
+      "outputCreated": false
+    },
+    {
+      "name": "ramp endpoint",
+      "code": "RAMP",
+      "sha256": "27f6396902eba89e773139a7d6a706400406ffd100605df3ef546feb9f84d8dd",
+      "outputCreated": false
+    },
+    {
+      "name": "ramp omega",
+      "code": "RAMP",
+      "sha256": "5df3fa87419cfca763ca432cf59bda3e8eeb15981206bf2760771c4df26677cb",
+      "outputCreated": false
+    },
+    {
+      "name": "BBT reset",
+      "code": "MAP_STRUCTURE",
+      "sha256": "6409981d161f1f9d43e16c17c409614f6a341f9cbc91904bcb373c4084cc3510",
+      "outputCreated": false
+    },
+    {
+      "name": "corrupt BBT",
+      "code": "MAP_BBT",
+      "sha256": "a53214c19a4c9bbf2cdacf9719662587dead952df5c90dbc68385f623a78302d",
+      "outputCreated": false
+    },
+    {
+      "name": "tempo range",
+      "code": "TEMPO_RANGE",
+      "sha256": "20218a29a997d986c8b2911be21ac4911dab94a2707947244a20696ae228a7a9",
+      "outputCreated": false
+    },
+    {
+      "name": "DTD",
+      "code": "XML_DOCTYPE",
+      "sha256": "2be5b9f05b8b1f5b6cc05f03a171c04c43340f80bdba0ea5dd0cce8cc1ccdc9f",
+      "outputCreated": false
+    },
+    {
+      "name": "bad UTF8",
+      "code": "XML_ENCODING",
+      "sha256": "ca2fd00fa001190744c15c317643ab092e7048ce086a243e2be9437c898de1bb",
+      "outputCreated": false
+    },
+    {
+      "name": "old schema",
+      "code": "SESSION_VERSION",
+      "sha256": "d7e34adc374394659aab6364e1e0fa35176614db9ba1d3b581cad74195c3ca8d",
+      "outputCreated": false
+    },
+    {
+      "name": "full-bound malformed XML",
+      "code": "INVALID_XML",
+      "sha256": "e61630929f967092dd30bca1e2d13cba565e508bd409c7f983251f37474f90e9",
+      "outputCreated": false
+    },
+    {
+      "name": "oversize",
+      "code": "INPUT_LIMIT",
+      "sha256": "2650f5452459081abf6602c1620ef8c809a8a1887a2f4692369575bd10ea2b85",
+      "outputCreated": false
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "networkRequests": [],
+  "workerURLs": [
+    "blob:null/98ffda33-0365-4331-ad37-4ef40712bde3",
+    "blob:null/86eb04c7-c159-4830-b76b-8cb9b32b2e12",
+    "blob:null/ec728b96-656a-42fb-a5e3-9600934a232a",
+    "blob:null/01b1f27d-6383-40b4-a1d5-3e5c9160d6fd",
+    "blob:null/f69e9b93-39b6-4df1-8b81-9b7896075403",
+    "blob:null/6892f70d-e591-42d3-af15-cbd176d0cb63",
+    "blob:null/b34bddd1-27d8-43a8-af56-6136bb95927a",
+    "blob:null/bdaea35b-08eb-4c20-9a56-9b757378f32f",
+    "blob:null/19c13ddc-3b8d-4e02-8fd8-89ca29c008ce",
+    "blob:null/8c31fe80-3f73-47ac-a7a1-03a247785c84",
+    "blob:null/d76714f0-fa49-4676-8f67-b04874e80026",
+    "blob:null/27477728-8807-46f9-9ccb-ba79d7626bd5",
+    "blob:null/6994f0fa-6448-4832-a439-c554141fe9f1",
+    "blob:null/8f82fe27-6687-4dd8-b9a2-051f3cf71ff8",
+    "blob:null/4e02b6a0-995d-4ace-b5a5-f1403e51bdbe",
+    "blob:null/82a5d425-b647-40b6-b1c0-24faf30e113d",
+    "blob:null/4be601d1-71d6-40f8-b1b4-de18aa42dc46",
+    "blob:null/038dc0f0-2f7b-448e-887d-9b6347483cfe",
+    "blob:null/801b3812-1599-44af-911b-9f5078ec0619",
+    "blob:null/eeb4a324-62b7-4d1e-b7ab-a9065a3acea4",
+    "blob:null/ad56b0ae-1304-47c6-bb23-e56b7fc8f97d",
+    "blob:null/960fde22-3eef-45af-90df-e37b06215c8d",
+    "blob:null/8aeb31d3-7803-4a69-83a9-18198d8155cd",
+    "blob:null/b1bd63fb-9785-41a4-815b-876b402507da",
+    "blob:null/e2cccd9b-579c-4886-b163-a141644acb37",
+    "blob:null/9ea7c70b-d16e-424b-bc3e-60996fb5bd4f",
+    "blob:null/38ea7568-fd8f-48c2-b1ca-ef0a7979ddbe",
+    "blob:null/c643bbe4-226d-4963-8e7e-8ef3a107f4b8",
+    "blob:null/0bd1f945-bc57-4a8c-9996-29ea4accad71",
+    "blob:null/9335e2d2-4d9f-4231-82dd-f8282abb3c49",
+    "blob:null/ffd65622-91c2-4bf2-ad52-f3620e86ca12",
+    "blob:null/effcb26b-90e0-4199-acda-29cb094064a5",
+    "blob:null/ae5213f2-82e1-4ca2-b62c-b60abb7726fe"
+  ],
+  "screenshots": [
+    "01-ja-desktop.png",
+    "03-ja-390-left.png",
+    "03-ja-390-right.png",
+    "03-ja-320-left.png",
+    "03-ja-320-right.png",
+    "01-en-desktop.png",
+    "03-en-390-left.png",
+    "03-en-390-right.png",
+    "03-en-320-left.png",
+    "03-en-320-right.png",
+    "04-en-error.png"
+  ],
+  "shippedHTMLSHA256": "c59e04952c2f610b76d1a493d6b421c974bd08f42f53193e3b40372b945de76d",
+  "downloads": {
+    "primary": {
+      "sha256": "5f2cc617ae234d86ce9907c028bbe1f6d3e06af197186fd75529542e3b3f68b8",
+      "bytes": 106,
+      "receiptSHA256": "75fb505179edd433e333506d0b9a0cc08117a9a44d9be91c4af818b28e460cb8"
+    }
+  },
+  "browserVersion": "154.0.8037.57",
+  "chromiumMainProcessCommands": [
+    "/usr/bin/google-chrome --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-extensions --disable-features=AcceptCHFrame,AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,Translate,AutoDeElevate,RenderDocument --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --enable-automation --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --user-data-dir=/tmp/playwright_chromiumdev_profile-GGWMML --remote-debugging-pipe --no-startup-window"
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "tool": "BeatCourier",
+  "version": "0.1.0",
+  "exportOrigin": "browser UI download",
+  "nativeProfile": "Ardour8.12 whole-quarter stepped map",
+  "sourceFile": {
+    "name": "private-session.ardour",
+    "bytes": 12284
+  },
+  "outputBytes": 106,
+  "sourceSha256": "f84c16e8f167fc5f351ee584e2dbd92f9459dff25874a71d7036c926b1509829",
+  "outputSha256": "5f2cc617ae234d86ce9907c028bbe1f6d3e06af197186fd75529542e3b3f68b8",
+  "format": 0,
+  "ppqn": 1920,
+  "endTick": "55680",
+  "noteEvents": 0,
+  "review": [
+    {
+      "kind": "tempo",
+      "quarter": "0",
+      "tick": "0",
+      "microseconds": 500000,
+      "exactMicroseconds": "500000",
+      "errorMicroseconds": "0",
+      "sourceQuarterNotesPerMinute": "120",
+      "midiQuarterNotesPerMinute": "120",
+      "rounded": false
+    },
+    {
+      "kind": "meter",
+      "quarter": "0",
+      "tick": "0",
+      "numerator": 4,
+      "denominator": 4,
+      "clocksPerClick": 24,
+      "notated32nds": 8
+    },
+    {
+      "kind": "tempo",
+      "quarter": "8",
+      "tick": "15360",
+      "microseconds": 600000,
+      "exactMicroseconds": "600000",
+      "errorMicroseconds": "0",
+      "sourceQuarterNotesPerMinute": "100",
+      "midiQuarterNotesPerMinute": "100",
+      "rounded": false
+    },
+    {
+      "kind": "meter",
+      "quarter": "8",
+      "tick": "15360",
+      "numerator": 3,
+      "denominator": 4,
+      "clocksPerClick": 24,
+      "notated32nds": 8
+    },
+    {
+      "kind": "tempo",
+      "quarter": "14",
+      "tick": "26880",
+      "microseconds": 800000,
+      "exactMicroseconds": "800000",
+      "errorMicroseconds": "0",
+      "sourceQuarterNotesPerMinute": "75",
+      "midiQuarterNotesPerMinute": "75",
+      "rounded": false
+    },
+    {
+      "kind": "meter",
+      "quarter": "14",
+      "tick": "26880",
+      "numerator": 7,
+      "denominator": 8,
+      "clocksPerClick": 24,
+      "notated32nds": 8
+    },
+    {
+      "kind": "tempo",
+      "quarter": "16",
+      "tick": "30720",
+      "microseconds": 500000,
+      "exactMicroseconds": "500000",
+      "errorMicroseconds": "0",
+      "sourceQuarterNotesPerMinute": "120",
+      "midiQuarterNotesPerMinute": "120",
+      "rounded": false
+    },
+    {
+      "kind": "tempo",
+      "quarter": "20",
+      "tick": "38400",
+      "microseconds": 487805,
+      "exactMicroseconds": "200000000000000000000/409999999346301",
+      "errorMicroseconds": "49681122359305/409999999346301",
+      "sourceQuarterNotesPerMinute": "1229999998038903/10000000000000",
+      "midiQuarterNotesPerMinute": "12000000/97561",
+      "rounded": true
+    },
+    {
+      "kind": "tempo",
+      "quarter": "28",
+      "tick": "53760",
+      "microseconds": 400000,
+      "exactMicroseconds": "400000",
+      "errorMicroseconds": "0",
+      "sourceQuarterNotesPerMinute": "150",
+      "midiQuarterNotesPerMinute": "150",
+      "rounded": false
+    },
+    {
+      "kind": "meter",
+      "quarter": "28",
+      "tick": "53760",
+      "numerator": 4,
+      "denominator": 4,
+      "clocksPerClick": 24,
+      "notated32nds": 8
+    }
+  ]
+}

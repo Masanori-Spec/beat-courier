@@ -1,0 +1,1981 @@
+{
+  "status": "PRODUCTION_CONVERTER_NATIVE_ACCEPTED",
+  "productUI": "ACTUAL_BROWSER_DOWNLOAD_GATE",
+  "consumer": "Authenticated Debian Ardour8.12.0+ds-1",
+  "fixtureAuthoring": "Official native Lua TempoMap API",
+  "inputSourceSha256": "f84c16e8f167fc5f351ee584e2dbd92f9459dff25874a71d7036c926b1509829",
+  "fractionalSourceSha256": "2844ac587dcfbd2c94aa572a32863c2f53bffca32c9d97872acacb6b2d8aadb8",
+  "source": {
+    "tempos": [
+      {
+        "quarter": 0,
+        "sclock": 0,
+        "bbt": "1|1|0",
+        "npm": "120",
+        "noteType": 4,
+        "superclocksPerTempoNote": 141120000
+      },
+      {
+        "quarter": 8,
+        "sclock": 1128960000,
+        "bbt": "3|1|0",
+        "npm": "100",
+        "noteType": 4,
+        "superclocksPerTempoNote": 169344000
+      },
+      {
+        "quarter": 14,
+        "sclock": 2145024000,
+        "bbt": "5|1|0",
+        "npm": "150",
+        "noteType": 8,
+        "superclocksPerTempoNote": 112896000
+      },
+      {
+        "quarter": 16,
+        "sclock": 2596608000,
+        "bbt": "5|5|0",
+        "npm": "120",
+        "noteType": 4,
+        "superclocksPerTempoNote": 141120000
+      },
+      {
+        "quarter": 20,
+        "sclock": 3161088000,
+        "bbt": "6|6|0",
+        "npm": "122.9999998038903",
+        "noteType": 4,
+        "superclocksPerTempoNote": 137678049
+      },
+      {
+        "quarter": 28,
+        "sclock": 4262512392,
+        "bbt": "9|1|0",
+        "npm": "150",
+        "noteType": 4,
+        "superclocksPerTempoNote": 112896000
+      }
+    ],
+    "meters": [
+      [
+        0,
+        4,
+        4
+      ],
+      [
+        8,
+        3,
+        4
+      ],
+      [
+        14,
+        7,
+        8
+      ],
+      [
+        28,
+        4,
+        4
+      ]
+    ],
+    "terminalNormalization": null,
+    "sourceToTargetClockDeltaAtQ28": 0
+  },
+  "midi": {
+    "format": 0,
+    "ppqn": 1920,
+    "events": [
+      [
+        0,
+        "tempo",
+        500000
+      ],
+      [
+        0,
+        "meter",
+        4,
+        4
+      ],
+      [
+        15360,
+        "tempo",
+        600000
+      ],
+      [
+        15360,
+        "meter",
+        3,
+        4
+      ],
+      [
+        26880,
+        "tempo",
+        800000
+      ],
+      [
+        26880,
+        "meter",
+        7,
+        8
+      ],
+      [
+        30720,
+        "tempo",
+        500000
+      ],
+      [
+        38400,
+        "tempo",
+        487805
+      ],
+      [
+        53760,
+        "tempo",
+        400000
+      ],
+      [
+        53760,
+        "meter",
+        4,
+        4
+      ]
+    ],
+    "endTick": 55680,
+    "channelEvents": 0,
+    "sha256": "5f2cc617ae234d86ce9907c028bbe1f6d3e06af197186fd75529542e3b3f68b8"
+  },
+  "receiptAccounting": {
+    "checkedEntries": 10,
+    "positionRounding": false,
+    "positiveClockDriftSuperclocks": 272,
+    "positiveClockDriftSeconds": "17/17640000"
+  },
+  "cases": [
+    {
+      "label": "positive-import",
+      "normalExit": 0,
+      "nativeMap": {
+        "tempos": [
+          {
+            "quarter": 0,
+            "sclock": 0,
+            "bbt": "1|1|0",
+            "npm": "120",
+            "noteType": 4,
+            "superclocksPerTempoNote": 141120000
+          },
+          {
+            "quarter": 8,
+            "sclock": 1128960000,
+            "bbt": "3|1|0",
+            "npm": "100",
+            "noteType": 4,
+            "superclocksPerTempoNote": 169344000
+          },
+          {
+            "quarter": 14,
+            "sclock": 2145024000,
+            "bbt": "5|1|0",
+            "npm": "75",
+            "noteType": 4,
+            "superclocksPerTempoNote": 225792000
+          },
+          {
+            "quarter": 16,
+            "sclock": 2596608000,
+            "bbt": "5|5|0",
+            "npm": "120",
+            "noteType": 4,
+            "superclocksPerTempoNote": 141120000
+          },
+          {
+            "quarter": 20,
+            "sclock": 3161088000,
+            "bbt": "6|6|0",
+            "npm": "122.99996942868532",
+            "noteType": 4,
+            "superclocksPerTempoNote": 137678083
+          },
+          {
+            "quarter": 28,
+            "sclock": 4262512664,
+            "bbt": "9|1|0",
+            "npm": "150",
+            "noteType": 4,
+            "superclocksPerTempoNote": 112896000
+          }
+        ],
+        "meters": [
+          [
+            0,
+            4,
+            4
+          ],
+          [
+            8,
+            3,
+            4
+          ],
+          [
+            14,
+            7,
+            8
+          ],
+          [
+            28,
+            4,
+            4
+          ]
+        ],
+        "terminalNormalization": {
+          "sclock": "4611686018427387903",
+          "quarters": "2147483646:1919",
+          "bbt": "536870913|3|1919",
+          "name": "<import"
+        },
+        "sourceToTargetClockDeltaAtQ28": 272
+      },
+      "nativeQueries": [
+        {
+          "tick": 0,
+          "quarterNotesPerMinute": "120",
+          "meter": [
+            4,
+            4
+          ]
+        },
+        {
+          "tick": 1,
+          "quarterNotesPerMinute": "120",
+          "meter": [
+            4,
+            4
+          ]
+        },
+        {
+          "tick": 15360,
+          "quarterNotesPerMinute": "120",
+          "meter": [
+            4,
+            4
+          ]
+        },
+        {
+          "tick": 15361,
+          "quarterNotesPerMinute": "100",
+          "meter": [
+            3,
+            4
+          ]
+        },
+        {
+          "tick": 26880,
+          "quarterNotesPerMinute": "100",
+          "meter": [
+            3,
+            4
+          ]
+        },
+        {
+          "tick": 26881,
+          "quarterNotesPerMinute": "75",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 30720,
+          "quarterNotesPerMinute": "75",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 30721,
+          "quarterNotesPerMinute": "120",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 32640,
+          "quarterNotesPerMinute": "120",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 32641,
+          "quarterNotesPerMinute": "120",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 38400,
+          "quarterNotesPerMinute": "120",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 38401,
+          "quarterNotesPerMinute": "12299996942869/100000000000",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 53760,
+          "quarterNotesPerMinute": "12299996942869/100000000000",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 53761,
+          "quarterNotesPerMinute": "150",
+          "meter": [
+            4,
+            4
+          ]
+        },
+        {
+          "tick": 61440,
+          "quarterNotesPerMinute": "150",
+          "meter": [
+            4,
+            4
+          ]
+        }
+      ],
+      "positiveOracleRejected": false,
+      "nonfatalDiagnosticLines": [
+        "WARNING: Your system has a limit for maximum amount of locked memory!",
+        "WARNING: Could not check your glib-2.0 for mutex locking atomic operations.",
+        "(ardour-8.12.0~ds:7087): GLib-GObject-CRITICAL **: 10:52:57.992: g_object_ref: assertion 'G_IS_OBJECT (object)' failed",
+        "(ardour-8.12.0~ds:7087): GLib-GObject-CRITICAL **: 10:52:57.992: g_object_freeze_notify: assertion 'G_IS_OBJECT (object)' failed",
+        "(ardour-8.12.0~ds:7087): Gtk-CRITICAL **: 10:52:57.992: IA__gtk_widget_has_default: assertion 'GTK_IS_WIDGET (widget)' failed",
+        "(ardour-8.12.0~ds:7087): Gtk-CRITICAL **: 10:52:57.992: IA__gtk_widget_get_receives_default: assertion 'GTK_IS_WIDGET (widget)' failed",
+        "(ardour-8.12.0~ds:7087): GLib-GObject-CRITICAL **: 10:52:57.992: g_object_notify: assertion 'G_IS_OBJECT (object)' failed",
+        "(ardour-8.12.0~ds:7087): Gtk-CRITICAL **: 10:52:57.992: IA__gtk_widget_has_default: assertion 'GTK_IS_WIDGET (widget)' failed",
+        "(ardour-8.12.0~ds:7087): GLib-GObject-CRITICAL **: 10:52:57.992: g_object_thaw_notify: assertion 'G_IS_OBJECT (object)' failed",
+        "(ardour-8.12.0~ds:7087): GLib-GObject-CRITICAL **: 10:52:57.992: g_object_unref: assertion 'G_IS_OBJECT (object)' failed"
+      ],
+      "arguments": [
+        "/usr/bin/ardour",
+        "-a",
+        "-d",
+        "-n",
+        "-P",
+        "/tmp/beatcourier-native/target/Target.ardour"
+      ]
+    },
+    {
+      "label": "positive-reloaded",
+      "normalExit": 0,
+      "nativeMap": {
+        "tempos": [
+          {
+            "quarter": 0,
+            "sclock": 0,
+            "bbt": "1|1|0",
+            "npm": "120",
+            "noteType": 4,
+            "superclocksPerTempoNote": 141120000
+          },
+          {
+            "quarter": 8,
+            "sclock": 1128960000,
+            "bbt": "3|1|0",
+            "npm": "100",
+            "noteType": 4,
+            "superclocksPerTempoNote": 169344000
+          },
+          {
+            "quarter": 14,
+            "sclock": 2145024000,
+            "bbt": "5|1|0",
+            "npm": "75",
+            "noteType": 4,
+            "superclocksPerTempoNote": 225792000
+          },
+          {
+            "quarter": 16,
+            "sclock": 2596608000,
+            "bbt": "5|5|0",
+            "npm": "120",
+            "noteType": 4,
+            "superclocksPerTempoNote": 141120000
+          },
+          {
+            "quarter": 20,
+            "sclock": 3161088000,
+            "bbt": "6|6|0",
+            "npm": "122.99996942868532",
+            "noteType": 4,
+            "superclocksPerTempoNote": 137678083
+          },
+          {
+            "quarter": 28,
+            "sclock": 4262512664,
+            "bbt": "9|1|0",
+            "npm": "150",
+            "noteType": 4,
+            "superclocksPerTempoNote": 112896000
+          }
+        ],
+        "meters": [
+          [
+            0,
+            4,
+            4
+          ],
+          [
+            8,
+            3,
+            4
+          ],
+          [
+            14,
+            7,
+            8
+          ],
+          [
+            28,
+            4,
+            4
+          ]
+        ],
+        "terminalNormalization": {
+          "sclock": "4611686018427387903",
+          "quarters": "2147483647:0",
+          "bbt": "536870913|3|1919",
+          "name": "<import"
+        },
+        "sourceToTargetClockDeltaAtQ28": 272
+      },
+      "nativeQueries": [
+        {
+          "tick": 0,
+          "quarterNotesPerMinute": "120",
+          "meter": [
+            4,
+            4
+          ]
+        },
+        {
+          "tick": 1,
+          "quarterNotesPerMinute": "120",
+          "meter": [
+            4,
+            4
+          ]
+        },
+        {
+          "tick": 15360,
+          "quarterNotesPerMinute": "120",
+          "meter": [
+            4,
+            4
+          ]
+        },
+        {
+          "tick": 15361,
+          "quarterNotesPerMinute": "100",
+          "meter": [
+            3,
+            4
+          ]
+        },
+        {
+          "tick": 26880,
+          "quarterNotesPerMinute": "100",
+          "meter": [
+            3,
+            4
+          ]
+        },
+        {
+          "tick": 26881,
+          "quarterNotesPerMinute": "75",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 30720,
+          "quarterNotesPerMinute": "75",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 30721,
+          "quarterNotesPerMinute": "120",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 32640,
+          "quarterNotesPerMinute": "120",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 32641,
+          "quarterNotesPerMinute": "120",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 38400,
+          "quarterNotesPerMinute": "120",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 38401,
+          "quarterNotesPerMinute": "12299996942869/100000000000",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 53760,
+          "quarterNotesPerMinute": "12299996942869/100000000000",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 53761,
+          "quarterNotesPerMinute": "150",
+          "meter": [
+            4,
+            4
+          ]
+        },
+        {
+          "tick": 61440,
+          "quarterNotesPerMinute": "150",
+          "meter": [
+            4,
+            4
+          ]
+        }
+      ],
+      "positiveOracleRejected": false,
+      "nonfatalDiagnosticLines": [
+        "WARNING: Your system has a limit for maximum amount of locked memory!",
+        "WARNING: Could not check your glib-2.0 for mutex locking atomic operations.",
+        "(ardour-8.12.0~ds:7255): GLib-GObject-CRITICAL **: 10:53:17.577: g_object_ref: assertion 'G_IS_OBJECT (object)' failed",
+        "(ardour-8.12.0~ds:7255): GLib-GObject-CRITICAL **: 10:53:17.577: g_object_freeze_notify: assertion 'G_IS_OBJECT (object)' failed",
+        "(ardour-8.12.0~ds:7255): Gtk-CRITICAL **: 10:53:17.577: IA__gtk_widget_has_default: assertion 'GTK_IS_WIDGET (widget)' failed",
+        "(ardour-8.12.0~ds:7255): Gtk-CRITICAL **: 10:53:17.577: IA__gtk_widget_get_receives_default: assertion 'GTK_IS_WIDGET (widget)' failed",
+        "(ardour-8.12.0~ds:7255): GLib-GObject-CRITICAL **: 10:53:17.577: g_object_notify: assertion 'G_IS_OBJECT (object)' failed",
+        "(ardour-8.12.0~ds:7255): Gtk-CRITICAL **: 10:53:17.577: IA__gtk_widget_has_default: assertion 'GTK_IS_WIDGET (widget)' failed",
+        "(ardour-8.12.0~ds:7255): GLib-GObject-CRITICAL **: 10:53:17.577: g_object_thaw_notify: assertion 'G_IS_OBJECT (object)' failed",
+        "(ardour-8.12.0~ds:7255): GLib-GObject-CRITICAL **: 10:53:17.577: g_object_unref: assertion 'G_IS_OBJECT (object)' failed"
+      ],
+      "arguments": [
+        "/usr/bin/ardour",
+        "-a",
+        "-d",
+        "-n",
+        "-P",
+        "/tmp/beatcourier-native/target/Target.ardour"
+      ]
+    },
+    {
+      "label": "tempo-fault-import",
+      "normalExit": 0,
+      "nativeMap": {
+        "tempos": [
+          {
+            "quarter": 0,
+            "sclock": 0,
+            "bbt": "1|1|0",
+            "npm": "120",
+            "noteType": 4,
+            "superclocksPerTempoNote": 141120000
+          },
+          {
+            "quarter": 8,
+            "sclock": 1128960000,
+            "bbt": "3|1|0",
+            "npm": "100",
+            "noteType": 4,
+            "superclocksPerTempoNote": 169344000
+          },
+          {
+            "quarter": 14,
+            "sclock": 2145024000,
+            "bbt": "5|1|0",
+            "npm": "75",
+            "noteType": 4,
+            "superclocksPerTempoNote": 225792000
+          },
+          {
+            "quarter": 16,
+            "sclock": 2596608000,
+            "bbt": "5|5|0",
+            "npm": "120",
+            "noteType": 4,
+            "superclocksPerTempoNote": 141120000
+          },
+          {
+            "quarter": 20,
+            "sclock": 3161088000,
+            "bbt": "6|6|0",
+            "npm": "122.99996942868532",
+            "noteType": 4,
+            "superclocksPerTempoNote": 137678083
+          },
+          {
+            "quarter": 28,
+            "sclock": 4262512664,
+            "bbt": "9|1|0",
+            "npm": "100",
+            "noteType": 4,
+            "superclocksPerTempoNote": 169344000
+          }
+        ],
+        "meters": [
+          [
+            0,
+            4,
+            4
+          ],
+          [
+            8,
+            3,
+            4
+          ],
+          [
+            14,
+            7,
+            8
+          ],
+          [
+            28,
+            4,
+            4
+          ]
+        ],
+        "terminalNormalization": {
+          "sclock": "4611686018427387903",
+          "quarters": "2147483646:1919",
+          "bbt": "536870913|3|1919",
+          "name": "<import"
+        },
+        "sourceToTargetClockDeltaAtQ28": 272
+      },
+      "nativeQueries": [
+        {
+          "tick": 0,
+          "quarterNotesPerMinute": "120",
+          "meter": [
+            4,
+            4
+          ]
+        },
+        {
+          "tick": 1,
+          "quarterNotesPerMinute": "120",
+          "meter": [
+            4,
+            4
+          ]
+        },
+        {
+          "tick": 15360,
+          "quarterNotesPerMinute": "120",
+          "meter": [
+            4,
+            4
+          ]
+        },
+        {
+          "tick": 15361,
+          "quarterNotesPerMinute": "100",
+          "meter": [
+            3,
+            4
+          ]
+        },
+        {
+          "tick": 26880,
+          "quarterNotesPerMinute": "100",
+          "meter": [
+            3,
+            4
+          ]
+        },
+        {
+          "tick": 26881,
+          "quarterNotesPerMinute": "75",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 30720,
+          "quarterNotesPerMinute": "75",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 30721,
+          "quarterNotesPerMinute": "120",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 32640,
+          "quarterNotesPerMinute": "120",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 32641,
+          "quarterNotesPerMinute": "120",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 38400,
+          "quarterNotesPerMinute": "120",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 38401,
+          "quarterNotesPerMinute": "12299996942869/100000000000",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 53760,
+          "quarterNotesPerMinute": "12299996942869/100000000000",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 53761,
+          "quarterNotesPerMinute": "100",
+          "meter": [
+            4,
+            4
+          ]
+        },
+        {
+          "tick": 61440,
+          "quarterNotesPerMinute": "100",
+          "meter": [
+            4,
+            4
+          ]
+        }
+      ],
+      "positiveOracleRejected": true,
+      "nonfatalDiagnosticLines": [
+        "WARNING: Your system has a limit for maximum amount of locked memory!",
+        "WARNING: Could not check your glib-2.0 for mutex locking atomic operations.",
+        "(ardour-8.12.0~ds:7396): GLib-GObject-CRITICAL **: 10:53:36.921: g_object_ref: assertion 'G_IS_OBJECT (object)' failed",
+        "(ardour-8.12.0~ds:7396): GLib-GObject-CRITICAL **: 10:53:36.921: g_object_freeze_notify: assertion 'G_IS_OBJECT (object)' failed",
+        "(ardour-8.12.0~ds:7396): Gtk-CRITICAL **: 10:53:36.921: IA__gtk_widget_has_default: assertion 'GTK_IS_WIDGET (widget)' failed",
+        "(ardour-8.12.0~ds:7396): Gtk-CRITICAL **: 10:53:36.921: IA__gtk_widget_get_receives_default: assertion 'GTK_IS_WIDGET (widget)' failed",
+        "(ardour-8.12.0~ds:7396): GLib-GObject-CRITICAL **: 10:53:36.921: g_object_notify: assertion 'G_IS_OBJECT (object)' failed",
+        "(ardour-8.12.0~ds:7396): Gtk-CRITICAL **: 10:53:36.921: IA__gtk_widget_has_default: assertion 'GTK_IS_WIDGET (widget)' failed",
+        "(ardour-8.12.0~ds:7396): GLib-GObject-CRITICAL **: 10:53:36.921: g_object_thaw_notify: assertion 'G_IS_OBJECT (object)' failed",
+        "(ardour-8.12.0~ds:7396): GLib-GObject-CRITICAL **: 10:53:36.921: g_object_unref: assertion 'G_IS_OBJECT (object)' failed"
+      ],
+      "arguments": [
+        "/usr/bin/ardour",
+        "-a",
+        "-d",
+        "-n",
+        "-P",
+        "/tmp/beatcourier-native/target/Target.ardour"
+      ]
+    },
+    {
+      "label": "tempo-fault-reloaded",
+      "normalExit": 0,
+      "nativeMap": {
+        "tempos": [
+          {
+            "quarter": 0,
+            "sclock": 0,
+            "bbt": "1|1|0",
+            "npm": "120",
+            "noteType": 4,
+            "superclocksPerTempoNote": 141120000
+          },
+          {
+            "quarter": 8,
+            "sclock": 1128960000,
+            "bbt": "3|1|0",
+            "npm": "100",
+            "noteType": 4,
+            "superclocksPerTempoNote": 169344000
+          },
+          {
+            "quarter": 14,
+            "sclock": 2145024000,
+            "bbt": "5|1|0",
+            "npm": "75",
+            "noteType": 4,
+            "superclocksPerTempoNote": 225792000
+          },
+          {
+            "quarter": 16,
+            "sclock": 2596608000,
+            "bbt": "5|5|0",
+            "npm": "120",
+            "noteType": 4,
+            "superclocksPerTempoNote": 141120000
+          },
+          {
+            "quarter": 20,
+            "sclock": 3161088000,
+            "bbt": "6|6|0",
+            "npm": "122.99996942868532",
+            "noteType": 4,
+            "superclocksPerTempoNote": 137678083
+          },
+          {
+            "quarter": 28,
+            "sclock": 4262512664,
+            "bbt": "9|1|0",
+            "npm": "100",
+            "noteType": 4,
+            "superclocksPerTempoNote": 169344000
+          }
+        ],
+        "meters": [
+          [
+            0,
+            4,
+            4
+          ],
+          [
+            8,
+            3,
+            4
+          ],
+          [
+            14,
+            7,
+            8
+          ],
+          [
+            28,
+            4,
+            4
+          ]
+        ],
+        "terminalNormalization": {
+          "sclock": "4611686018427387903",
+          "quarters": "2147483647:0",
+          "bbt": "536870913|3|1919",
+          "name": "<import"
+        },
+        "sourceToTargetClockDeltaAtQ28": 272
+      },
+      "nativeQueries": [
+        {
+          "tick": 0,
+          "quarterNotesPerMinute": "120",
+          "meter": [
+            4,
+            4
+          ]
+        },
+        {
+          "tick": 1,
+          "quarterNotesPerMinute": "120",
+          "meter": [
+            4,
+            4
+          ]
+        },
+        {
+          "tick": 15360,
+          "quarterNotesPerMinute": "120",
+          "meter": [
+            4,
+            4
+          ]
+        },
+        {
+          "tick": 15361,
+          "quarterNotesPerMinute": "100",
+          "meter": [
+            3,
+            4
+          ]
+        },
+        {
+          "tick": 26880,
+          "quarterNotesPerMinute": "100",
+          "meter": [
+            3,
+            4
+          ]
+        },
+        {
+          "tick": 26881,
+          "quarterNotesPerMinute": "75",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 30720,
+          "quarterNotesPerMinute": "75",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 30721,
+          "quarterNotesPerMinute": "120",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 32640,
+          "quarterNotesPerMinute": "120",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 32641,
+          "quarterNotesPerMinute": "120",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 38400,
+          "quarterNotesPerMinute": "120",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 38401,
+          "quarterNotesPerMinute": "12299996942869/100000000000",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 53760,
+          "quarterNotesPerMinute": "12299996942869/100000000000",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 53761,
+          "quarterNotesPerMinute": "100",
+          "meter": [
+            4,
+            4
+          ]
+        },
+        {
+          "tick": 61440,
+          "quarterNotesPerMinute": "100",
+          "meter": [
+            4,
+            4
+          ]
+        }
+      ],
+      "positiveOracleRejected": true,
+      "nonfatalDiagnosticLines": [
+        "WARNING: Your system has a limit for maximum amount of locked memory!",
+        "WARNING: Could not check your glib-2.0 for mutex locking atomic operations.",
+        "(ardour-8.12.0~ds:7538): GLib-GObject-CRITICAL **: 10:53:56.396: g_object_ref: assertion 'G_IS_OBJECT (object)' failed",
+        "(ardour-8.12.0~ds:7538): GLib-GObject-CRITICAL **: 10:53:56.396: g_object_freeze_notify: assertion 'G_IS_OBJECT (object)' failed",
+        "(ardour-8.12.0~ds:7538): Gtk-CRITICAL **: 10:53:56.396: IA__gtk_widget_has_default: assertion 'GTK_IS_WIDGET (widget)' failed",
+        "(ardour-8.12.0~ds:7538): Gtk-CRITICAL **: 10:53:56.396: IA__gtk_widget_get_receives_default: assertion 'GTK_IS_WIDGET (widget)' failed",
+        "(ardour-8.12.0~ds:7538): GLib-GObject-CRITICAL **: 10:53:56.396: g_object_notify: assertion 'G_IS_OBJECT (object)' failed",
+        "(ardour-8.12.0~ds:7538): Gtk-CRITICAL **: 10:53:56.396: IA__gtk_widget_has_default: assertion 'GTK_IS_WIDGET (widget)' failed",
+        "(ardour-8.12.0~ds:7538): GLib-GObject-CRITICAL **: 10:53:56.396: g_object_thaw_notify: assertion 'G_IS_OBJECT (object)' failed",
+        "(ardour-8.12.0~ds:7538): GLib-GObject-CRITICAL **: 10:53:56.396: g_object_unref: assertion 'G_IS_OBJECT (object)' failed"
+      ],
+      "arguments": [
+        "/usr/bin/ardour",
+        "-a",
+        "-d",
+        "-n",
+        "-P",
+        "/tmp/beatcourier-native/target/Target.ardour"
+      ]
+    },
+    {
+      "label": "meter-fault-import",
+      "normalExit": 0,
+      "nativeMap": {
+        "tempos": [
+          {
+            "quarter": 0,
+            "sclock": 0,
+            "bbt": "1|1|0",
+            "npm": "120",
+            "noteType": 4,
+            "superclocksPerTempoNote": 141120000
+          },
+          {
+            "quarter": 8,
+            "sclock": 1128960000,
+            "bbt": "3|1|0",
+            "npm": "100",
+            "noteType": 4,
+            "superclocksPerTempoNote": 169344000
+          },
+          {
+            "quarter": 14,
+            "sclock": 2145024000,
+            "bbt": "5|1|0",
+            "npm": "75",
+            "noteType": 4,
+            "superclocksPerTempoNote": 225792000
+          },
+          {
+            "quarter": 16,
+            "sclock": 2596608000,
+            "bbt": "5|5|0",
+            "npm": "120",
+            "noteType": 4,
+            "superclocksPerTempoNote": 141120000
+          },
+          {
+            "quarter": 20,
+            "sclock": 3161088000,
+            "bbt": "6|6|0",
+            "npm": "122.99996942868532",
+            "noteType": 4,
+            "superclocksPerTempoNote": 137678083
+          },
+          {
+            "quarter": 28,
+            "sclock": 4262512664,
+            "bbt": "9|1|0",
+            "npm": "150",
+            "noteType": 4,
+            "superclocksPerTempoNote": 112896000
+          }
+        ],
+        "meters": [
+          [
+            0,
+            4,
+            4
+          ],
+          [
+            8,
+            3,
+            4
+          ],
+          [
+            14,
+            7,
+            8
+          ],
+          [
+            28,
+            5,
+            4
+          ]
+        ],
+        "terminalNormalization": {
+          "sclock": "4611686018427387903",
+          "quarters": "2147483646:1919",
+          "bbt": "429496732|4|1919",
+          "name": "<import"
+        },
+        "sourceToTargetClockDeltaAtQ28": 272
+      },
+      "nativeQueries": [
+        {
+          "tick": 0,
+          "quarterNotesPerMinute": "120",
+          "meter": [
+            4,
+            4
+          ]
+        },
+        {
+          "tick": 1,
+          "quarterNotesPerMinute": "120",
+          "meter": [
+            4,
+            4
+          ]
+        },
+        {
+          "tick": 15360,
+          "quarterNotesPerMinute": "120",
+          "meter": [
+            4,
+            4
+          ]
+        },
+        {
+          "tick": 15361,
+          "quarterNotesPerMinute": "100",
+          "meter": [
+            3,
+            4
+          ]
+        },
+        {
+          "tick": 26880,
+          "quarterNotesPerMinute": "100",
+          "meter": [
+            3,
+            4
+          ]
+        },
+        {
+          "tick": 26881,
+          "quarterNotesPerMinute": "75",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 30720,
+          "quarterNotesPerMinute": "75",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 30721,
+          "quarterNotesPerMinute": "120",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 32640,
+          "quarterNotesPerMinute": "120",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 32641,
+          "quarterNotesPerMinute": "120",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 38400,
+          "quarterNotesPerMinute": "120",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 38401,
+          "quarterNotesPerMinute": "12299996942869/100000000000",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 53760,
+          "quarterNotesPerMinute": "12299996942869/100000000000",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 53761,
+          "quarterNotesPerMinute": "150",
+          "meter": [
+            5,
+            4
+          ]
+        },
+        {
+          "tick": 61440,
+          "quarterNotesPerMinute": "150",
+          "meter": [
+            5,
+            4
+          ]
+        }
+      ],
+      "positiveOracleRejected": true,
+      "nonfatalDiagnosticLines": [
+        "WARNING: Your system has a limit for maximum amount of locked memory!",
+        "WARNING: Could not check your glib-2.0 for mutex locking atomic operations.",
+        "(ardour-8.12.0~ds:7679): GLib-GObject-CRITICAL **: 10:54:15.751: g_object_ref: assertion 'G_IS_OBJECT (object)' failed",
+        "(ardour-8.12.0~ds:7679): GLib-GObject-CRITICAL **: 10:54:15.751: g_object_freeze_notify: assertion 'G_IS_OBJECT (object)' failed",
+        "(ardour-8.12.0~ds:7679): Gtk-CRITICAL **: 10:54:15.751: IA__gtk_widget_has_default: assertion 'GTK_IS_WIDGET (widget)' failed",
+        "(ardour-8.12.0~ds:7679): Gtk-CRITICAL **: 10:54:15.751: IA__gtk_widget_get_receives_default: assertion 'GTK_IS_WIDGET (widget)' failed",
+        "(ardour-8.12.0~ds:7679): GLib-GObject-CRITICAL **: 10:54:15.751: g_object_notify: assertion 'G_IS_OBJECT (object)' failed",
+        "(ardour-8.12.0~ds:7679): Gtk-CRITICAL **: 10:54:15.751: IA__gtk_widget_has_default: assertion 'GTK_IS_WIDGET (widget)' failed",
+        "(ardour-8.12.0~ds:7679): GLib-GObject-CRITICAL **: 10:54:15.751: g_object_thaw_notify: assertion 'G_IS_OBJECT (object)' failed",
+        "(ardour-8.12.0~ds:7679): GLib-GObject-CRITICAL **: 10:54:15.751: g_object_unref: assertion 'G_IS_OBJECT (object)' failed"
+      ],
+      "arguments": [
+        "/usr/bin/ardour",
+        "-a",
+        "-d",
+        "-n",
+        "-P",
+        "/tmp/beatcourier-native/target/Target.ardour"
+      ]
+    },
+    {
+      "label": "meter-fault-reloaded",
+      "normalExit": 0,
+      "nativeMap": {
+        "tempos": [
+          {
+            "quarter": 0,
+            "sclock": 0,
+            "bbt": "1|1|0",
+            "npm": "120",
+            "noteType": 4,
+            "superclocksPerTempoNote": 141120000
+          },
+          {
+            "quarter": 8,
+            "sclock": 1128960000,
+            "bbt": "3|1|0",
+            "npm": "100",
+            "noteType": 4,
+            "superclocksPerTempoNote": 169344000
+          },
+          {
+            "quarter": 14,
+            "sclock": 2145024000,
+            "bbt": "5|1|0",
+            "npm": "75",
+            "noteType": 4,
+            "superclocksPerTempoNote": 225792000
+          },
+          {
+            "quarter": 16,
+            "sclock": 2596608000,
+            "bbt": "5|5|0",
+            "npm": "120",
+            "noteType": 4,
+            "superclocksPerTempoNote": 141120000
+          },
+          {
+            "quarter": 20,
+            "sclock": 3161088000,
+            "bbt": "6|6|0",
+            "npm": "122.99996942868532",
+            "noteType": 4,
+            "superclocksPerTempoNote": 137678083
+          },
+          {
+            "quarter": 28,
+            "sclock": 4262512664,
+            "bbt": "9|1|0",
+            "npm": "150",
+            "noteType": 4,
+            "superclocksPerTempoNote": 112896000
+          }
+        ],
+        "meters": [
+          [
+            0,
+            4,
+            4
+          ],
+          [
+            8,
+            3,
+            4
+          ],
+          [
+            14,
+            7,
+            8
+          ],
+          [
+            28,
+            5,
+            4
+          ]
+        ],
+        "terminalNormalization": {
+          "sclock": "4611686018427387903",
+          "quarters": "2147483647:0",
+          "bbt": "429496732|4|1919",
+          "name": "<import"
+        },
+        "sourceToTargetClockDeltaAtQ28": 272
+      },
+      "nativeQueries": [
+        {
+          "tick": 0,
+          "quarterNotesPerMinute": "120",
+          "meter": [
+            4,
+            4
+          ]
+        },
+        {
+          "tick": 1,
+          "quarterNotesPerMinute": "120",
+          "meter": [
+            4,
+            4
+          ]
+        },
+        {
+          "tick": 15360,
+          "quarterNotesPerMinute": "120",
+          "meter": [
+            4,
+            4
+          ]
+        },
+        {
+          "tick": 15361,
+          "quarterNotesPerMinute": "100",
+          "meter": [
+            3,
+            4
+          ]
+        },
+        {
+          "tick": 26880,
+          "quarterNotesPerMinute": "100",
+          "meter": [
+            3,
+            4
+          ]
+        },
+        {
+          "tick": 26881,
+          "quarterNotesPerMinute": "75",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 30720,
+          "quarterNotesPerMinute": "75",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 30721,
+          "quarterNotesPerMinute": "120",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 32640,
+          "quarterNotesPerMinute": "120",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 32641,
+          "quarterNotesPerMinute": "120",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 38400,
+          "quarterNotesPerMinute": "120",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 38401,
+          "quarterNotesPerMinute": "12299996942869/100000000000",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 53760,
+          "quarterNotesPerMinute": "12299996942869/100000000000",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 53761,
+          "quarterNotesPerMinute": "150",
+          "meter": [
+            5,
+            4
+          ]
+        },
+        {
+          "tick": 61440,
+          "quarterNotesPerMinute": "150",
+          "meter": [
+            5,
+            4
+          ]
+        }
+      ],
+      "positiveOracleRejected": true,
+      "nonfatalDiagnosticLines": [
+        "WARNING: Your system has a limit for maximum amount of locked memory!",
+        "WARNING: Could not check your glib-2.0 for mutex locking atomic operations.",
+        "(ardour-8.12.0~ds:7821): GLib-GObject-CRITICAL **: 10:54:35.470: g_object_ref: assertion 'G_IS_OBJECT (object)' failed",
+        "(ardour-8.12.0~ds:7821): GLib-GObject-CRITICAL **: 10:54:35.470: g_object_freeze_notify: assertion 'G_IS_OBJECT (object)' failed",
+        "(ardour-8.12.0~ds:7821): Gtk-CRITICAL **: 10:54:35.470: IA__gtk_widget_has_default: assertion 'GTK_IS_WIDGET (widget)' failed",
+        "(ardour-8.12.0~ds:7821): Gtk-CRITICAL **: 10:54:35.470: IA__gtk_widget_get_receives_default: assertion 'GTK_IS_WIDGET (widget)' failed",
+        "(ardour-8.12.0~ds:7821): GLib-GObject-CRITICAL **: 10:54:35.470: g_object_notify: assertion 'G_IS_OBJECT (object)' failed",
+        "(ardour-8.12.0~ds:7821): Gtk-CRITICAL **: 10:54:35.470: IA__gtk_widget_has_default: assertion 'GTK_IS_WIDGET (widget)' failed",
+        "(ardour-8.12.0~ds:7821): GLib-GObject-CRITICAL **: 10:54:35.470: g_object_thaw_notify: assertion 'G_IS_OBJECT (object)' failed",
+        "(ardour-8.12.0~ds:7821): GLib-GObject-CRITICAL **: 10:54:35.470: g_object_unref: assertion 'G_IS_OBJECT (object)' failed"
+      ],
+      "arguments": [
+        "/usr/bin/ardour",
+        "-a",
+        "-d",
+        "-n",
+        "-P",
+        "/tmp/beatcourier-native/target/Target.ardour"
+      ]
+    },
+    {
+      "label": "position-fault-import",
+      "normalExit": 0,
+      "nativeMap": {
+        "tempos": [
+          {
+            "quarter": 0,
+            "sclock": 0,
+            "bbt": "1|1|0",
+            "npm": "120",
+            "noteType": 4,
+            "superclocksPerTempoNote": 141120000
+          },
+          {
+            "quarter": 8,
+            "sclock": 1128960000,
+            "bbt": "3|1|0",
+            "npm": "100",
+            "noteType": 4,
+            "superclocksPerTempoNote": 169344000
+          },
+          {
+            "quarter": 14,
+            "sclock": 2145024000,
+            "bbt": "5|1|0",
+            "npm": "75",
+            "noteType": 4,
+            "superclocksPerTempoNote": 225792000
+          },
+          {
+            "quarter": 17,
+            "sclock": 2822400000,
+            "bbt": "5|7|0",
+            "npm": "120",
+            "noteType": 4,
+            "superclocksPerTempoNote": 141120000
+          },
+          {
+            "quarter": 20,
+            "sclock": 3245760000,
+            "bbt": "6|6|0",
+            "npm": "122.99996942868532",
+            "noteType": 4,
+            "superclocksPerTempoNote": 137678083
+          },
+          {
+            "quarter": 28,
+            "sclock": 4347184664,
+            "bbt": "9|1|0",
+            "npm": "150",
+            "noteType": 4,
+            "superclocksPerTempoNote": 112896000
+          }
+        ],
+        "meters": [
+          [
+            0,
+            4,
+            4
+          ],
+          [
+            8,
+            3,
+            4
+          ],
+          [
+            14,
+            7,
+            8
+          ],
+          [
+            28,
+            4,
+            4
+          ]
+        ],
+        "terminalNormalization": {
+          "sclock": "4611686018427387903",
+          "quarters": "2147483646:1919",
+          "bbt": "536870913|3|1919",
+          "name": "<import"
+        },
+        "sourceToTargetClockDeltaAtQ28": 84672272
+      },
+      "nativeQueries": [
+        {
+          "tick": 0,
+          "quarterNotesPerMinute": "120",
+          "meter": [
+            4,
+            4
+          ]
+        },
+        {
+          "tick": 1,
+          "quarterNotesPerMinute": "120",
+          "meter": [
+            4,
+            4
+          ]
+        },
+        {
+          "tick": 15360,
+          "quarterNotesPerMinute": "120",
+          "meter": [
+            4,
+            4
+          ]
+        },
+        {
+          "tick": 15361,
+          "quarterNotesPerMinute": "100",
+          "meter": [
+            3,
+            4
+          ]
+        },
+        {
+          "tick": 26880,
+          "quarterNotesPerMinute": "100",
+          "meter": [
+            3,
+            4
+          ]
+        },
+        {
+          "tick": 26881,
+          "quarterNotesPerMinute": "75",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 30720,
+          "quarterNotesPerMinute": "75",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 30721,
+          "quarterNotesPerMinute": "75",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 32640,
+          "quarterNotesPerMinute": "75",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 32641,
+          "quarterNotesPerMinute": "120",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 38400,
+          "quarterNotesPerMinute": "120",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 38401,
+          "quarterNotesPerMinute": "12299996942869/100000000000",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 53760,
+          "quarterNotesPerMinute": "12299996942869/100000000000",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 53761,
+          "quarterNotesPerMinute": "150",
+          "meter": [
+            4,
+            4
+          ]
+        },
+        {
+          "tick": 61440,
+          "quarterNotesPerMinute": "150",
+          "meter": [
+            4,
+            4
+          ]
+        }
+      ],
+      "positiveOracleRejected": true,
+      "nonfatalDiagnosticLines": [
+        "WARNING: Your system has a limit for maximum amount of locked memory!",
+        "WARNING: Could not check your glib-2.0 for mutex locking atomic operations.",
+        "(ardour-8.12.0~ds:7962): GLib-GObject-CRITICAL **: 10:54:54.848: g_object_ref: assertion 'G_IS_OBJECT (object)' failed",
+        "(ardour-8.12.0~ds:7962): GLib-GObject-CRITICAL **: 10:54:54.848: g_object_freeze_notify: assertion 'G_IS_OBJECT (object)' failed",
+        "(ardour-8.12.0~ds:7962): Gtk-CRITICAL **: 10:54:54.848: IA__gtk_widget_has_default: assertion 'GTK_IS_WIDGET (widget)' failed",
+        "(ardour-8.12.0~ds:7962): Gtk-CRITICAL **: 10:54:54.848: IA__gtk_widget_get_receives_default: assertion 'GTK_IS_WIDGET (widget)' failed",
+        "(ardour-8.12.0~ds:7962): GLib-GObject-CRITICAL **: 10:54:54.848: g_object_notify: assertion 'G_IS_OBJECT (object)' failed",
+        "(ardour-8.12.0~ds:7962): Gtk-CRITICAL **: 10:54:54.848: IA__gtk_widget_has_default: assertion 'GTK_IS_WIDGET (widget)' failed",
+        "(ardour-8.12.0~ds:7962): GLib-GObject-CRITICAL **: 10:54:54.848: g_object_thaw_notify: assertion 'G_IS_OBJECT (object)' failed",
+        "(ardour-8.12.0~ds:7962): GLib-GObject-CRITICAL **: 10:54:54.848: g_object_unref: assertion 'G_IS_OBJECT (object)' failed"
+      ],
+      "arguments": [
+        "/usr/bin/ardour",
+        "-a",
+        "-d",
+        "-n",
+        "-P",
+        "/tmp/beatcourier-native/target/Target.ardour"
+      ]
+    },
+    {
+      "label": "position-fault-reloaded",
+      "normalExit": 0,
+      "nativeMap": {
+        "tempos": [
+          {
+            "quarter": 0,
+            "sclock": 0,
+            "bbt": "1|1|0",
+            "npm": "120",
+            "noteType": 4,
+            "superclocksPerTempoNote": 141120000
+          },
+          {
+            "quarter": 8,
+            "sclock": 1128960000,
+            "bbt": "3|1|0",
+            "npm": "100",
+            "noteType": 4,
+            "superclocksPerTempoNote": 169344000
+          },
+          {
+            "quarter": 14,
+            "sclock": 2145024000,
+            "bbt": "5|1|0",
+            "npm": "75",
+            "noteType": 4,
+            "superclocksPerTempoNote": 225792000
+          },
+          {
+            "quarter": 17,
+            "sclock": 2822400000,
+            "bbt": "5|7|0",
+            "npm": "120",
+            "noteType": 4,
+            "superclocksPerTempoNote": 141120000
+          },
+          {
+            "quarter": 20,
+            "sclock": 3245760000,
+            "bbt": "6|6|0",
+            "npm": "122.99996942868532",
+            "noteType": 4,
+            "superclocksPerTempoNote": 137678083
+          },
+          {
+            "quarter": 28,
+            "sclock": 4347184664,
+            "bbt": "9|1|0",
+            "npm": "150",
+            "noteType": 4,
+            "superclocksPerTempoNote": 112896000
+          }
+        ],
+        "meters": [
+          [
+            0,
+            4,
+            4
+          ],
+          [
+            8,
+            3,
+            4
+          ],
+          [
+            14,
+            7,
+            8
+          ],
+          [
+            28,
+            4,
+            4
+          ]
+        ],
+        "terminalNormalization": {
+          "sclock": "4611686018427387903",
+          "quarters": "2147483647:0",
+          "bbt": "536870913|3|1919",
+          "name": "<import"
+        },
+        "sourceToTargetClockDeltaAtQ28": 84672272
+      },
+      "nativeQueries": [
+        {
+          "tick": 0,
+          "quarterNotesPerMinute": "120",
+          "meter": [
+            4,
+            4
+          ]
+        },
+        {
+          "tick": 1,
+          "quarterNotesPerMinute": "120",
+          "meter": [
+            4,
+            4
+          ]
+        },
+        {
+          "tick": 15360,
+          "quarterNotesPerMinute": "120",
+          "meter": [
+            4,
+            4
+          ]
+        },
+        {
+          "tick": 15361,
+          "quarterNotesPerMinute": "100",
+          "meter": [
+            3,
+            4
+          ]
+        },
+        {
+          "tick": 26880,
+          "quarterNotesPerMinute": "100",
+          "meter": [
+            3,
+            4
+          ]
+        },
+        {
+          "tick": 26881,
+          "quarterNotesPerMinute": "75",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 30720,
+          "quarterNotesPerMinute": "75",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 30721,
+          "quarterNotesPerMinute": "75",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 32640,
+          "quarterNotesPerMinute": "75",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 32641,
+          "quarterNotesPerMinute": "120",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 38400,
+          "quarterNotesPerMinute": "120",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 38401,
+          "quarterNotesPerMinute": "12299996942869/100000000000",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 53760,
+          "quarterNotesPerMinute": "12299996942869/100000000000",
+          "meter": [
+            7,
+            8
+          ]
+        },
+        {
+          "tick": 53761,
+          "quarterNotesPerMinute": "150",
+          "meter": [
+            4,
+            4
+          ]
+        },
+        {
+          "tick": 61440,
+          "quarterNotesPerMinute": "150",
+          "meter": [
+            4,
+            4
+          ]
+        }
+      ],
+      "positiveOracleRejected": true,
+      "nonfatalDiagnosticLines": [
+        "WARNING: Your system has a limit for maximum amount of locked memory!",
+        "WARNING: Could not check your glib-2.0 for mutex locking atomic operations.",
+        "(ardour-8.12.0~ds:8104): GLib-GObject-CRITICAL **: 10:55:14.550: g_object_ref: assertion 'G_IS_OBJECT (object)' failed",
+        "(ardour-8.12.0~ds:8104): GLib-GObject-CRITICAL **: 10:55:14.550: g_object_freeze_notify: assertion 'G_IS_OBJECT (object)' failed",
+        "(ardour-8.12.0~ds:8104): Gtk-CRITICAL **: 10:55:14.550: IA__gtk_widget_has_default: assertion 'GTK_IS_WIDGET (widget)' failed",
+        "(ardour-8.12.0~ds:8104): Gtk-CRITICAL **: 10:55:14.550: IA__gtk_widget_get_receives_default: assertion 'GTK_IS_WIDGET (widget)' failed",
+        "(ardour-8.12.0~ds:8104): GLib-GObject-CRITICAL **: 10:55:14.550: g_object_notify: assertion 'G_IS_OBJECT (object)' failed",
+        "(ardour-8.12.0~ds:8104): Gtk-CRITICAL **: 10:55:14.550: IA__gtk_widget_has_default: assertion 'GTK_IS_WIDGET (widget)' failed",
+        "(ardour-8.12.0~ds:8104): GLib-GObject-CRITICAL **: 10:55:14.550: g_object_thaw_notify: assertion 'G_IS_OBJECT (object)' failed",
+        "(ardour-8.12.0~ds:8104): GLib-GObject-CRITICAL **: 10:55:14.550: g_object_unref: assertion 'G_IS_OBJECT (object)' failed"
+      ],
+      "arguments": [
+        "/usr/bin/ardour",
+        "-a",
+        "-d",
+        "-n",
+        "-P",
+        "/tmp/beatcourier-native/target/Target.ardour"
+      ]
+    }
+  ],
+  "precision": "Exact whole-quarter/tick positions; tempo microseconds rounded with explicit receipt. Q28 wall-clock drift is272 native superclocks for the positive fixture.",
+  "logCaveat": "Normal exits are required. Nonfatal GTK/GObject diagnostics are retained; no error-free-log claim."
+}

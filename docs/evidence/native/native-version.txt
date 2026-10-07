@@ -1,0 +1,3 @@
+ardour-lua version 8.12.0~ds
+
+Copyright (C) GPL 2015-2020 Robin Gareus <robin@gareus.org>

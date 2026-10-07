@@ -1,4 +1,6 @@
-# Offline UI acceptance — candidate, runtime pending
+# Offline UI acceptance — verified runtime checkpoint
+
+Accepted runtime commit53c52f6549138aa14d57744fdd7214d04bcdacf5 passed browser/native run37610052361, with39 browser cases and the complete eight-case native gate. See RELEASE.md and evidence/provenance.json for exact original artifact identities.
 
 The standalone Japanese/English HTML contains the unchanged accepted converter in a dedicated Blob Web Worker. It reads one explicitly chosen saved session, displays every tempo/meter change with exact positions and rounding review, and requires confirmation before saving a conductor MIDI. A separate JSON receipt records every exact rational value, input/output hash and filename. Source files remain unchanged.
 
@@ -12,4 +14,4 @@ Japanese and English desktop plus390px/320px mobile views are captured. Mobile c
 
 The native job downloads that browser artifact and checks the tested HTML against the same shipped bytes. Fresh official native Lua authoring must reproduce both browser input files byte-for-byte. The positive MIDI and receipt are copied directly from the actual downloads, with no positive regeneration. Only the three deliberate faults are derived afterward. The accepted independent Python/Mido/native oracle then requires all eight import/fresh-reload cases,120 native readings, literal XML positions/values, six fault rejections, normal exits and unchanged source bytes. Nonfatal GTK/GObject diagnostics and exact output-only terminal-marker normalizations remain disclosed.
 
-No browser or browser-to-native success is claimed until the original hosted artifacts are independently reviewed. The source-only converter/native checkpoint and its preserved failures remain separately identifiable.
+The original browser and native artifacts were independently reviewed. Earlier compatibility/production checkpoints and failed diagnostic attempts remain separately identifiable.

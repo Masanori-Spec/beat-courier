@@ -44,9 +44,9 @@ R9 completed both literal query/XML stages and both normal GUI exits at commit4d
 
 Ardour 8.12's `Editor::import_smf_tempo_map` rounds MIDI pulses to whole quarter notes with `int_div_round`. The first product profile therefore must reject fractional-quarter changes, including 15.5. Ardour 9.2 instead delegates to `Evoral::SMF::tempo_map`, which constructs fractional native beat ticks. That source finding is not a runtime test of 9.2.
 
-## Work still gated
+## Subsequent gates
 
-The complete exporter must separately prove bounded inert XML parsing, constant-tempo and MusicTimes rejection, exact rational SMF mapping, tempo rounding receipts, unchanged original inputs, whole-quarter rejection, and independent faulty-tempo/meter/position controls. The eventual offline browser download must pass the actual consumer gate too. No product UI begins before the full native converter gate is accepted.
+The production converter subsequently passed its separate native gate at d7d3736d3c1ecfdb70b911be2b591db9f24cdab6. The actual offline browser download then passed the same strict native/fault gate at53c52f6549138aa14d57744fdd7214d04bcdacf5. See production-gate.md, browser-gate.md and RELEASE.md. This original probe remains separately labelled because its MIDI was handwritten.
 
 ## Primary sources
 

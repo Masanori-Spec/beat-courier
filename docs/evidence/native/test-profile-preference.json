@@ -1,0 +1,14 @@
+{
+  "path": "/tmp/beatcourier-native/config/ardour8/config",
+  "option": "hide-dummy-backend",
+  "before": "1",
+  "after": "0",
+  "purpose": "Expose the already-bundled Dummy backend in the disposable GUI profile",
+  "changedByteRange": [
+    6093,
+    6094
+  ],
+  "beforeSha256": "0f3c5cc2e1694eeb625478c95a4075e862010ccb2015c8ca4ba86e243ec7085e",
+  "afterSha256": "31d8d213c110a35727009ffbf7db5490be49f66eda40f6d8af60238958ea5bac",
+  "allOtherBytesUnchanged": true
+}

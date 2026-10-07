@@ -1,0 +1,9 @@
+{
+  "origin": "Actual sandboxed offline browser MIDI and receipt, passed unchanged into the accepted eight-case native gate",
+  "testedHTMLSHA256": "c59e04952c2f610b76d1a493d6b421c974bd08f42f53193e3b40372b945de76d",
+  "sourceSHA256": "f84c16e8f167fc5f351ee584e2dbd92f9459dff25874a71d7036c926b1509829",
+  "fractionalSHA256": "2844ac587dcfbd2c94aa572a32863c2f53bffca32c9d97872acacb6b2d8aadb8",
+  "browserMIDISHA256": "5f2cc617ae234d86ce9907c028bbe1f6d3e06af197186fd75529542e3b3f68b8",
+  "browserReceiptSHA256": "75fb505179edd433e333506d0b9a0cc08117a9a44d9be91c4af818b28e460cb8",
+  "bytes": 106
+}
