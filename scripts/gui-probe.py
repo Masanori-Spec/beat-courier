@@ -251,7 +251,7 @@ def launch(label,import_file):
     proc=subprocess.Popen(args,env=env,stdout=log,stderr=subprocess.STDOUT)
     try:
         prepare_gui(proc,label);native_queries=run_lua(query_script(import_file),label)
-        values=oracle.inspect(ROOT/'target/Target.ardour',imported=True)
+        values=oracle.inspect(ROOT/'target/Target.ardour',imported=True,reloaded=not import_file)
         shutil.copyfile(ROOT/'target/Target.ardour',ART/f'{label}.ardour')
         exit_code=normal_exit(proc,label);log.flush()
         text=log_path.read_text();assert not any(x in text for x in ['Segmentation fault','Aborted (core dumped)','Assertion failed'])
