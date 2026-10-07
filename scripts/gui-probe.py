@@ -2,6 +2,7 @@
 """Actual packaged Ardour GUI/Lua API, fixed synthetic files only. No product UI."""
 from pathlib import Path
 import hashlib, importlib.util, json, os, re, shutil, subprocess, time, traceback
+import xml.etree.ElementTree as ET
 from fractions import Fraction
 import pyatspi
 
@@ -118,6 +119,26 @@ def prepare_gui(proc,label):
             click_label(words,'Start');continue
         if has(words,'Window') and has(words,'Session'):return
     raise AssertionError('Native editor did not reach source-confirmed menu state')
+def expose_disposable_dummy_backend():
+    # Release builds hide this bundled hardware-free backend by default. This
+    # single ordinary preference belongs only to the freshly created test XDG
+    # profile. It does not change the consumer, importer, sandbox or OS settings.
+    path=ROOT/'config/ardour8/config'
+    assert path.is_file() and not path.is_symlink() and path.resolve()==path
+    before=path.read_bytes();assert len(before)<1024*1024 and b'<!DOCTYPE' not in before and b'<!ENTITY' not in before
+    (ART/'test-config-before.xml').write_bytes(before)
+    root=ET.fromstring(before);assert root.tag=='Ardour'
+    options=root.findall("./Config/Option[@name='hide-dummy-backend']")
+    assert len(options)==1 and options[0].attrib.get('value') in ['1','true']
+    pattern=rb'(<Option\s+name="hide-dummy-backend"\s+value=")(1|true)("\s*/>)'
+    matches=list(re.finditer(pattern,before));assert len(matches)==1,'Native preference form differs'
+    match=matches[0];start,end=match.span(2)
+    after=before[:start]+b'0'+before[end:]
+    assert after[:start]==before[:start] and after[start+1:]==before[end:]
+    parsed=ET.fromstring(after);assert parsed.findall("./Config/Option[@name='hide-dummy-backend']")[0].attrib['value']=='0'
+    path.write_bytes(after);assert path.read_bytes()==after
+    (ART/'test-config-after.xml').write_bytes(after)
+    (ART/'test-profile-preference.json').write_text(json.dumps({'path':str(path),'option':'hide-dummy-backend','before':options[0].attrib['value'],'after':'0','purpose':'Expose the already-bundled Dummy backend in the disposable GUI profile','changedByteRange':[start,end],'beforeSha256':hashlib.sha256(before).hexdigest(),'afterSha256':hashlib.sha256(after).hexdigest(),'allOtherBytesUnchanged':True},indent=2)+'\n')
 def lua_window(label):
     words=pixel_state(f'{label}-editor-menu');click_label(words,'Window')
     words=pixel_state(f'{label}-window-menu');click_label(words,'Scripting')
@@ -219,6 +240,7 @@ try:
     original_hash=sha(source);source_values=oracle.inspect(source);oracle.inspect(target,True)
     subprocess.run(['python3',str(PROJECT/'scripts/make-probe.py')],env=env,check=True,timeout=20)
     initialize_profile()
+    expose_disposable_dummy_backend()
     imported=launch('native-import',True);reloaded=launch('native-reloaded',False)
     assert sha(source)==original_hash,'Native source fixture changed'
     (ART/'probe-report.json').write_text(json.dumps({'status':'METADATA_ONLY_NATIVE_IMPORT_ACCEPTED','productConverter':'NOT_IMPLEMENTED','productUI':'NOT_IMPLEMENTED','consumer':'Authenticated Debian Ardour 8.12.0+ds-1','fixtureAuthoring':'Official native Lua TempoMap API','fileImport':'Unchanged GUI PublicEditor::do_import via official Lua binding, SMFTempoUse, empty instrument pointer','sourceSha256':original_hash,'source':source_values,'import':imported,'freshProcessReload':reloaded},indent=2)+'\n')

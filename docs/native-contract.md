@@ -26,6 +26,8 @@ The native GUI's Scripting console is a test-only means of invoking the unchange
 
 The first hosted run reached the normal welcome wizard and passed native fixture authoring, but its accessibility tree exposed only the desktop. The second harness reads actual native control labels with bounded OCR, then clicks their observed coordinates. Raw screenshots, thresholded OCR derivatives, word confidence/geometry and X11 titles are retained. The source-confirmed lower output pane is physically selected and copied only after a fresh clipboard sentinel. Editor/source echoes are rejected, and the six anchored native query lines, standalone completion and native `> OK` are still required. Native XML and fresh-process assertions are unchanged. This repair is an automation route, not a change to the consumer or evidence of successful import.
 
+R3 then completed the wizard and normal first-run exit. Its actual Audio/MIDI menu omitted the bundled Dummy backend. The pinned release source filters it while `hide-dummy-backend` is true. The harness now changes only that ordinary visibility option to false in the newly native-generated `/tmp/beatcourier-native/config/ardour8/config`, while the GUI is closed. Exact before/after synthetic configuration bytes and the one-value delta are retained. This is a disposable test preference; no user profile, system setting, realtime permission, sandbox or consumer code changes. The real GUI must still select and visibly confirm None (Dummy), Normal Speed and Silence before starting.
+
 ## Precision boundary
 
 Ardour 8.12's `Editor::import_smf_tempo_map` rounds MIDI pulses to whole quarter notes with `int_div_round`. The first product profile therefore must reject fractional-quarter changes, including 15.5. Ardour 9.2 instead delegates to `Evoral::SMF::tempo_map`, which constructs fractional native beat ticks. That source finding is not a runtime test of 9.2.
@@ -45,4 +47,5 @@ The complete exporter must separately prove bounded inert XML parsing, constant-
 - [GUI scripting execution](https://github.com/Ardour/ardour/blob/10517bff2b2c7b882b453296a939cf5d03174831/gtk2_ardour/luawindow.cc#L277)
 - [First-run wizard and saved marker](https://github.com/Ardour/ardour/blob/10517bff2b2c7b882b453296a939cf5d03174831/gtk2_ardour/new_user_wizard.cc#L296)
 - [Dummy backend](https://github.com/Ardour/ardour/blob/10517bff2b2c7b882b453296a939cf5d03174831/libs/backends/dummy/dummy_audiobackend.cc#L1030)
+- [Release-build backend visibility filter](https://github.com/Ardour/ardour/blob/10517bff2b2c7b882b453296a939cf5d03174831/libs/ardour/audioengine.cc#L968) and [default visibility preference](https://github.com/Ardour/ardour/blob/10517bff2b2c7b882b453296a939cf5d03174831/libs/ardour/ardour/rc_configuration_vars.h#L198)
 - [9.2 fractional SMF conversion](https://github.com/Ardour/ardour/blob/9.2/libs/evoral/SMF.cc#L838)
