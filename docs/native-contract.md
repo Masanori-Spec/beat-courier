@@ -32,6 +32,10 @@ R4 visibly reached that backend and the editor, where a locked-memory informatio
 
 R6 reached the unchanged native file-import API and failed the literal tempo assertion at quarter 8. Compatibility has not passed. The diagnostic script now prints all six actual map values and performs the normal native save before checking its expected-value flag, so a mismatch retains the complete consumer-produced map. The host still requires every literal query, the completion marker, the independent XML oracle and fresh-process reload. Saving a failed diagnostic does not count as acceptance, and no session map is rewritten by the harness.
 
+R7's native-saved map retained all three tempo and two meter points at the exact expected quarter, superclock and BBT positions. Its query discrepancy is explained by the pinned `tempo_at`/`meter_at` strict-less-than lookup: exact nonzero boundaries return the preceding segment. The corrected native-query oracle retains the six exact-quarter observations with that documented behavior and additionally requires 100 BPM/4/4 at native tick 15361 and 150 BPM/3/4 at tick 30721, one tick after each changed boundary. The independent XML point oracle is unchanged.
+
+The native importer also creates exactly one terminal `<import` MusicTime marker because it copies through maximum AudioTime and restores the prior end state in `TempoMap::paste`. The output-only oracle enumerates the complete observed marker: superclock4611686018427387903, quarters2147483646:1919, BBT715827881|3|1919, name`<import`, and the exact nested constant120BPM/4/4 attributes. Any other marker, extra attribute, changed value or missing/extra child rejects. Native source fixtures and the intended product input profile still reject nonempty MusicTimes. This distinction means a native-resaved imported session containing that terminal marker is outside the intended input profile. Fresh-process reload remains mandatory; these observations alone are not full acceptance.
+
 ## Precision boundary
 
 Ardour 8.12's `Editor::import_smf_tempo_map` rounds MIDI pulses to whole quarter notes with `int_div_round`. The first product profile therefore must reject fractional-quarter changes, including 15.5. Ardour 9.2 instead delegates to `Evoral::SMF::tempo_map`, which constructs fractional native beat ticks. That source finding is not a runtime test of 9.2.
@@ -48,6 +52,8 @@ The complete exporter must separately prove bounded inert XML parsing, constant-
 - [Native Lua session tool](https://github.com/Ardour/ardour/blob/10517bff2b2c7b882b453296a939cf5d03174831/luasession/luasession.cc)
 - [TempoMap XML persistence](https://github.com/Ardour/ardour/blob/10517bff2b2c7b882b453296a939cf5d03174831/libs/temporal/tempo.cc#L3286)
 - [Native clock-rate initialization](https://github.com/Ardour/ardour/blob/10517bff2b2c7b882b453296a939cf5d03174831/libs/temporal/enums.cc#L81)
+- [Strict native lookup comparator](https://github.com/Ardour/ardour/blob/10517bff2b2c7b882b453296a939cf5d03174831/libs/temporal/temporal/tempo.h#L124) and [lookup implementation](https://github.com/Ardour/ardour/blob/10517bff2b2c7b882b453296a939cf5d03174831/libs/temporal/temporal/tempo.h#L875)
+- [Importer copies through maximum AudioTime](https://github.com/Ardour/ardour/blob/10517bff2b2c7b882b453296a939cf5d03174831/gtk2_ardour/editor_audio_import.cc#L329) and [native paste end-marker creation](https://github.com/Ardour/ardour/blob/10517bff2b2c7b882b453296a939cf5d03174831/libs/temporal/tempo.cc#L1097)
 - [GUI scripting execution](https://github.com/Ardour/ardour/blob/10517bff2b2c7b882b453296a939cf5d03174831/gtk2_ardour/luawindow.cc#L277)
 - [First-run wizard and saved marker](https://github.com/Ardour/ardour/blob/10517bff2b2c7b882b453296a939cf5d03174831/gtk2_ardour/new_user_wizard.cc#L296)
 - [Dummy backend](https://github.com/Ardour/ardour/blob/10517bff2b2c7b882b453296a939cf5d03174831/libs/backends/dummy/dummy_audiobackend.cc#L1030)

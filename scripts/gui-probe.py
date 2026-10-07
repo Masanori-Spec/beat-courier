@@ -184,19 +184,23 @@ def run_lua(script,label):
     saved_path=ROOT/'target/Target.ardour'
     assert saved_path.is_file() and saved_path.stat().st_size<4*1024*1024
     shutil.copyfile(saved_path,ART/f'{label}-snapshot-before-host-check.ardour')
-    lines=output.splitlines();observed=[]
+    lines=output.splitlines();observed=[];after_ticks=[]
     for line in lines:
-        if line.startswith('NATIVE_Q '):
-            match=re.fullmatch(r'NATIVE_Q ([0-9]+) TEMPO ([0-9]+(?:\.[0-9]+)?) METER ([0-9]+(?:\.[0-9]+)?)/([0-9]+(?:\.[0-9]+)?)',line)
+        if line.startswith('NATIVE_Q ') or line.startswith('NATIVE_AFTER_TICK '):
+            match=re.fullmatch(r'(NATIVE_Q|NATIVE_AFTER_TICK) ([0-9]+) TEMPO ([0-9]+(?:\.[0-9]+)?) METER ([0-9]+(?:\.[0-9]+)?)/([0-9]+(?:\.[0-9]+)?)',line)
             assert match,'Malformed actual native query output'
-            assert Fraction(match[4])==4,'Actual native denominator differs'
-            observed.append((int(match[1]),Fraction(match[2]),Fraction(match[3])))
-    expected=[(0,Fraction(120),4),(7,Fraction(120),4),(8,Fraction(100),4),(15,Fraction(100),4),(16,Fraction(150),3),(24,Fraction(150),3)]
+            assert Fraction(match[5])==4,'Actual native denominator differs'
+            (observed if match[1]=='NATIVE_Q' else after_ticks).append((int(match[2]),Fraction(match[3]),Fraction(match[4])))
+    # Pinned native tempo_at/meter_at use strict '<': an exact nonzero
+    # boundary returns the prior segment. XML pins the point itself, and the
+    # additional one-tick-after probes require the new values immediately after.
+    expected=[(0,Fraction(120),4),(7,Fraction(120),4),(8,Fraction(120),4),(15,Fraction(100),4),(16,Fraction(100),4),(24,Fraction(150),3)]
     assert observed==expected,'Actual in-process native query lines differ from literal expectations'
+    assert after_ticks==[(15361,Fraction(100),4),(30721,Fraction(150),3)],'New native segments not observed one tick after their exact boundaries'
     assert lines.count('BEATCOURIER_NATIVE_MAP_OK')==1 and lines.count('> OK')==1,'Standalone native completion required'
     snapshot(f'{label}-output-copied')
     command('xdotool','key','--clearmodifiers','Alt+F4');time.sleep(.5)
-    return [{'quarter':q,'quarterNotesPerMinute':str(tempo),'meter':[int(meter),4]} for q,tempo,meter in observed]
+    return {'quarterQueries':[{'quarter':q,'quarterNotesPerMinute':str(tempo),'meter':[int(meter),4]} for q,tempo,meter in observed],'oneTickAfterQueries':[{'tick':tick,'quarterNotesPerMinute':str(tempo),'meter':[int(meter),4]} for tick,tempo,meter in after_ticks]}
 def query_script(import_file):
     prefix=''
     if import_file:
@@ -206,8 +210,8 @@ Editor:do_import(files, Editing.ImportDistinctFiles, Editing.ImportAsTrack, ARDO
 """
     return prefix+"""local map=Temporal.TempoMap.read()
 local positions={0,7,8,15,16,24}
-local tempos={120,120,100,100,150,150}
-local meters={4,4,4,4,3,3}
+local tempos={120,120,120,100,100,150}
+local meters={4,4,4,4,4,3}
 local all_expected=true
 for i,q in ipairs(positions) do
  local p=Temporal.timepos_t.from_ticks(q*1920)
@@ -216,6 +220,17 @@ for i,q in ipairs(positions) do
  local actual_denominator=map:meter_at(p):note_value()
  print('NATIVE_Q '..q..' TEMPO '..actual_tempo..' METER '..actual_meter..'/'..actual_denominator)
  all_expected=all_expected and math.abs(actual_tempo-tempos[i])<0.000001 and actual_meter==meters[i] and actual_denominator==4
+end
+local after_ticks={15361,30721}
+local after_tempos={100,150}
+local after_meters={4,3}
+for i,tick in ipairs(after_ticks) do
+ local p=Temporal.timepos_t.from_ticks(tick)
+ local actual_tempo=map:quarters_per_minute_at(p)
+ local actual_meter=map:meter_at(p):divisions_per_bar()
+ local actual_denominator=map:meter_at(p):note_value()
+ print('NATIVE_AFTER_TICK '..tick..' TEMPO '..actual_tempo..' METER '..actual_meter..'/'..actual_denominator)
+ all_expected=all_expected and math.abs(actual_tempo-after_tempos[i])<0.000001 and actual_meter==after_meters[i] and actual_denominator==4
 end
 assert(Session:save_state('',false,false,false,false,false)==0)
 print('BEATCOURIER_NATIVE_DIAGNOSTIC_SAVED')
@@ -236,7 +251,7 @@ def launch(label,import_file):
     proc=subprocess.Popen(args,env=env,stdout=log,stderr=subprocess.STDOUT)
     try:
         prepare_gui(proc,label);native_queries=run_lua(query_script(import_file),label)
-        values=oracle.inspect(ROOT/'target/Target.ardour')
+        values=oracle.inspect(ROOT/'target/Target.ardour',imported=True)
         shutil.copyfile(ROOT/'target/Target.ardour',ART/f'{label}.ardour')
         exit_code=normal_exit(proc,label);log.flush()
         text=log_path.read_text();assert not any(x in text for x in ['Segmentation fault','Aborted (core dumped)','Assertion failed'])
