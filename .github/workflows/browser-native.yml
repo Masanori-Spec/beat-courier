@@ -1,0 +1,66 @@
+name: Actual offline browser MIDI in official Ardour
+on: [push, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  browser:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Standard fonts and print inspection
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends fonts-noto-cjk poppler-utils
+          npm ci --ignore-scripts
+      - name: Core tests and reproducible offline artifact
+        run: |
+          npm run verify
+          python3 scripts/oracle-selftest.py
+          git diff --exit-code -- dist/beat-courier.html
+      - name: Actual sandboxed browser downloads and bounded worker tests
+        env:
+          CHROMIUM_PATH: /usr/bin/google-chrome
+        run: npm run test:browser
+      - name: Preserve original browser output and visual evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: beatcourier-browser-downloads
+          path: |
+            artifacts/browser/
+            dist/beat-courier.html
+          if-no-files-found: error
+  native:
+    needs: browser
+    runs-on: ubuntu-24.04
+    container: debian:13-slim
+    timeout-minutes: 20
+    env:
+      BEATCOURIER_BROWSER_INPUT: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: beatcourier-browser-downloads
+          path: downloaded-browser
+      - name: Authenticated standard Debian tools
+        run: |
+          apt-get update -o APT::Update::Error-Mode=any
+          apt-get install -y --no-install-recommends ca-certificates python3 python3-pyatspi python3-pil python3-mido xdotool xclip scrot xvfb xauth openbox dbus-x11 fonts-dejavu-core tesseract-ocr
+      - name: Verify exact official consumer before execution
+        run: python3 scripts/package-pin.py
+      - name: Actual browser output through native import save fresh reload and faults
+        run: xvfb-run -a -s '-screen 0 1600x1000x24' dbus-run-session -- sh -c 'openbox > /tmp/beatcourier-openbox.log 2>&1 & python3 scripts/gui-full-gate.py'
+      - name: Preserve original browser and native evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: beatcourier-browser-native-proof
+          path: |
+            artifacts/native/
+            downloaded-browser/
+          if-no-files-found: error
