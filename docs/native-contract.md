@@ -1,6 +1,6 @@
 # Native compatibility contract
 
-This is the first bounded consumer probe, before product implementation or UI.
+This records the first bounded consumer probe, accepted at R9 before production-output or UI acceptance. Its original MIDI is handwritten, not converter output.
 
 ## Official consumer identity
 
@@ -30,13 +30,15 @@ R3 then completed the wizard and normal first-run exit. Its actual Audio/MIDI me
 
 R4 visibly reached that backend and the editor, where a locked-memory informational dialog blocked the menu. The harness acknowledges only that exact observed warning through its unique native OK button. It does not change memory limits or select the dialog's “Do not show this window again” checkbox. The original screenshot and acknowledgement record remain in evidence. Tesseract TSV is parsed without CSV quote interpretation, so a recognized quotation-mark glyph cannot consume later OCR rows.
 
-R6 reached the unchanged native file-import API and failed the literal tempo assertion at quarter 8. Compatibility has not passed. The diagnostic script now prints all six actual map values and performs the normal native save before checking its expected-value flag, so a mismatch retains the complete consumer-produced map. The host still requires every literal query, the completion marker, the independent XML oracle and fresh-process reload. Saving a failed diagnostic does not count as acceptance, and no session map is rewritten by the harness.
+At R6, the unchanged native file-import API ran but the literal tempo assertion at quarter8 failed. Compatibility had not passed at that stage. The diagnostic script now prints all six actual map values and performs the normal native save before checking its expected-value flag, so a mismatch retains the complete consumer-produced map. The host still requires every literal query, the completion marker, the independent XML oracle and fresh-process reload. Saving a failed diagnostic does not count as acceptance, and no session map is rewritten by the harness.
 
 R7's native-saved map retained all three tempo and two meter points at the exact expected quarter, superclock and BBT positions. Its query discrepancy is explained by the pinned `tempo_at`/`meter_at` strict-less-than lookup: exact nonzero boundaries return the preceding segment. The corrected native-query oracle retains the six exact-quarter observations with that documented behavior and additionally requires 100 BPM/4/4 at native tick 15361 and 150 BPM/3/4 at tick 30721, one tick after each changed boundary. The independent XML point oracle is unchanged.
 
 The native importer also creates exactly one terminal `<import` MusicTime marker because it copies through maximum AudioTime and restores the prior end state in `TempoMap::paste`. The output-only oracle enumerates the complete observed marker: superclock4611686018427387903, quarters2147483646:1919, BBT715827881|3|1919, name`<import`, and the exact nested constant120BPM/4/4 attributes. Any other marker, extra attribute, changed value or missing/extra child rejects. Native source fixtures and the intended product input profile still reject nonempty MusicTimes. This distinction means a native-resaved imported session containing that terminal marker is outside the intended input profile. Fresh-process reload remains mandatory; these observations alone are not full acceptance.
 
 R8 passed all eight native queries both after import and after a fresh-process reload, with identical musical point positions. Its reload oracle exposed one further native normalization: `set_music_times_from_state` calls `add_or_replace_bartime`, which rounds the terminal marker up to a whole beat. Thus the fresh-reloaded stage requires exactly quarters2147483647:0, while the just-imported stage still requires2147483646:1919. Superclock, BBT, name, every nested attribute and all real tempo/meter points remain exact in both stages. The stages cannot accept each other's marker shape, and no general MusicTime exception is introduced.
+
+R9 completed both literal query/XML stages and both normal GUI exits at commit4dcb13efa45ce161d63454ffcfcbd00d6ce9be8a, run37598034673. Original172-member artifact SHA72c321290d0acdf061f3027620e773a7bbd6e696f10b88e501154c5466d4678a was independently accepted. Both logs contain nonfatal GTK/GObject critical diagnostics around closure; no error-free-log claim is made. All eight prior diagnostic failures are preserved alongside the accepted original artifact.
 
 ## Precision boundary
 

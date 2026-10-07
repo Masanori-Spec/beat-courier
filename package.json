@@ -1,0 +1,12 @@
+{
+  "name": "beat-courier",
+  "private": true,
+  "type": "module",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@xmldom/xmldom": "0.9.12"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.mjs"
+  }
+}

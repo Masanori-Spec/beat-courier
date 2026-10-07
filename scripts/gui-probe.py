@@ -158,7 +158,7 @@ def lua_window(label):
     r=geometry(window);assert r[2:]==[1100,850] and r[0]>=0 and r[1]>=0 and r[0]+r[2]<=1600 and r[1]+r[3]<=1000
     (ART/f'{label}-lua-window.json').write_text(json.dumps({'windowId':window,'nativeTitle':command('xdotool','getwindowname',window).strip(),'geometry':r},indent=2)+'\n')
     return window,r
-def run_lua(script,label):
+def run_lua(script,label,validator=None):
     window,frame=lua_window(label);words=pixel_state(f'{label}-lua-before')
     run_label,clear_label=pixels.toolbar_labels(ART/f'{label}-lua-before.png',words,frame)
     run=run_label['rect'];clear=clear_label['rect']
@@ -184,6 +184,11 @@ def run_lua(script,label):
     saved_path=ROOT/'target/Target.ardour'
     assert saved_path.is_file() and saved_path.stat().st_size<4*1024*1024
     shutil.copyfile(saved_path,ART/f'{label}-snapshot-before-host-check.ardour')
+    result=(validator or validate_probe_output)(output)
+    snapshot(f'{label}-output-copied')
+    command('xdotool','key','--clearmodifiers','Alt+F4');time.sleep(.5)
+    return result
+def validate_probe_output(output):
     lines=output.splitlines();observed=[];after_ticks=[]
     for line in lines:
         if line.startswith('NATIVE_Q ') or line.startswith('NATIVE_AFTER_TICK '):
@@ -198,8 +203,6 @@ def run_lua(script,label):
     assert observed==expected,'Actual in-process native query lines differ from literal expectations'
     assert after_ticks==[(15361,Fraction(100),4),(30721,Fraction(150),3)],'New native segments not observed one tick after their exact boundaries'
     assert lines.count('BEATCOURIER_NATIVE_MAP_OK')==1 and lines.count('> OK')==1,'Standalone native completion required'
-    snapshot(f'{label}-output-copied')
-    command('xdotool','key','--clearmodifiers','Alt+F4');time.sleep(.5)
     return {'quarterQueries':[{'quarter':q,'quarterNotesPerMinute':str(tempo),'meter':[int(meter),4]} for q,tempo,meter in observed],'oneTickAfterQueries':[{'tick':tick,'quarterNotesPerMinute':str(tempo),'meter':[int(meter),4]} for tick,tempo,meter in after_ticks]}
 def query_script(import_file):
     prefix=''
@@ -264,23 +267,26 @@ def launch(label,import_file):
             try:proc.wait(timeout=10)
             except subprocess.TimeoutExpired:proc.kill();proc.wait(timeout=10)
         log.close()
-try:
-    version=command('/usr/bin/ardour8-lua','-V');(ART/'native-version.txt').write_text(version)
-    assert '8.12' in version,'Actual installed native version differs'
-    with (ART/'native-author.log').open('w') as log:
-        subprocess.run(['/usr/bin/ardour8-lua',str(PROJECT/'scripts/author.lua')],env=env,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=90)
-    source=ROOT/'source/Source.ardour';target=ROOT/'target/Target.ardour'
-    shutil.copyfile(source,ART/'native-authored-source.ardour');shutil.copyfile(target,ART/'native-target-before.ardour')
-    original_hash=sha(source);source_values=oracle.inspect(source);oracle.inspect(target,True)
-    subprocess.run(['python3',str(PROJECT/'scripts/make-probe.py')],env=env,check=True,timeout=20)
-    initialize_profile()
-    expose_disposable_dummy_backend()
-    imported=launch('native-import',True);reloaded=launch('native-reloaded',False)
-    assert sha(source)==original_hash,'Native source fixture changed'
-    (ART/'probe-report.json').write_text(json.dumps({'status':'METADATA_ONLY_NATIVE_IMPORT_ACCEPTED','productConverter':'NOT_IMPLEMENTED','productUI':'NOT_IMPLEMENTED','consumer':'Authenticated Debian Ardour 8.12.0+ds-1','fixtureAuthoring':'Official native Lua TempoMap API','fileImport':'Unchanged GUI PublicEditor::do_import via official Lua binding, SMFTempoUse, empty instrument pointer','sourceSha256':original_hash,'source':source_values,'import':imported,'freshProcessReload':reloaded},indent=2)+'\n')
-except Exception:
-    # Preserve only the two fixed synthetic session files, even if a new native
-    # schema makes the oracle fail before normal copies have been recorded.
-    for name,path in [('failed-source',ROOT/'source/Source.ardour'),('failed-target',ROOT/'target/Target.ardour')]:
-        if path.is_file() and path.stat().st_size<4*1024*1024:shutil.copyfile(path,ART/f'{name}.ardour')
-    (ART/'failure.txt').write_text(traceback.format_exc());raise
+def main():
+    try:
+        version=command('/usr/bin/ardour8-lua','-V');(ART/'native-version.txt').write_text(version)
+        assert '8.12' in version,'Actual installed native version differs'
+        with (ART/'native-author.log').open('w') as log:
+            subprocess.run(['/usr/bin/ardour8-lua',str(PROJECT/'scripts/author.lua')],env=env,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=90)
+        source=ROOT/'source/Source.ardour';target=ROOT/'target/Target.ardour'
+        shutil.copyfile(source,ART/'native-authored-source.ardour');shutil.copyfile(target,ART/'native-target-before.ardour')
+        original_hash=sha(source);source_values=oracle.inspect(source);oracle.inspect(target,True)
+        subprocess.run(['python3',str(PROJECT/'scripts/make-probe.py')],env=env,check=True,timeout=20)
+        initialize_profile()
+        expose_disposable_dummy_backend()
+        imported=launch('native-import',True);reloaded=launch('native-reloaded',False)
+        assert sha(source)==original_hash,'Native source fixture changed'
+        (ART/'probe-report.json').write_text(json.dumps({'status':'METADATA_ONLY_NATIVE_IMPORT_ACCEPTED','productConverter':'NOT_IMPLEMENTED','productUI':'NOT_IMPLEMENTED','consumer':'Authenticated Debian Ardour 8.12.0+ds-1','fixtureAuthoring':'Official native Lua TempoMap API','fileImport':'Unchanged GUI PublicEditor::do_import via official Lua binding, SMFTempoUse, empty instrument pointer','sourceSha256':original_hash,'source':source_values,'import':imported,'freshProcessReload':reloaded},indent=2)+'\n')
+    except Exception:
+        # Preserve only the two fixed synthetic session files, even if a new native
+        # schema makes the oracle fail before normal copies have been recorded.
+        for name,path in [('failed-source',ROOT/'source/Source.ardour'),('failed-target',ROOT/'target/Target.ardour')]:
+            if path.is_file() and path.stat().st_size<4*1024*1024:shutil.copyfile(path,ART/f'{name}.ardour')
+        (ART/'failure.txt').write_text(traceback.format_exc());raise
+
+if __name__=='__main__':main()
