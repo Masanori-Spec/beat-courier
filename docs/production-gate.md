@@ -1,6 +1,6 @@
-# Production-output gate — pending actual hosted execution
+# Production-output gate — accepted native checkpoint
 
-The accepted R9 checkpoint proves the chosen native consumer route. This gate separately tests the production converter output. It preserves the same authenticated packages, disposable XDG/None(Dummy) configuration, physical GUI controls, output-only clipboard proof, unchanged PublicEditor file importer and native Session save/fresh reopen. No arbitrary user session is passed to the consumer.
+The production gate passed at commit d7d3736d3c1ecfdb70b911be2b591db9f24cdab6, run37601909063, artifact11473008636 SHAfb9374b8754c741d782516ab237aa4168d1ca1cd1dbcec45af7c979e2517435c. Independent review verified all503 original members, eight saved/reloaded native cases and120 readings. The accepted R9 checkpoint had already proved the chosen native consumer route. This gate separately tests the production converter output. It preserves the same authenticated packages, disposable XDG/None(Dummy) configuration, physical GUI controls, output-only clipboard proof, unchanged PublicEditor file importer and native Session save/fresh reopen. No arbitrary user session is passed to the consumer.
 
 ## Native-authored fixture
 
@@ -49,4 +49,4 @@ The input supports at most2048 tempo points and2048 meter points,30000 XML eleme
 
 Whole-quarter positions are necessary for8.12's importer. Native set_tempo also rounds to meter beats and set_meter uses native bar placement, so the core conservatively rejects off-beat tempo and off-bar meter points. Native note-value and meter fields are signed8-bit values: allowed power-of-two note values stop at64 and numerator stops at127. These are consumer-profile limits, not general SMF limits.
 
-The product UI remains gated on independently accepted actual production output. Subsequent browser downloads will require the same consumer proof.
+The UI phase was authorized after this independently accepted actual production output was preserved. Actual browser downloads still require the same consumer proof.

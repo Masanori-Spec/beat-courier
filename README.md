@@ -1,8 +1,8 @@
 # BeatCourier — stepped conductor MIDI
 
-BeatCourier is a bounded offline converter from a saved modern Ardour session's stepped tempo and meter map to a metadata-only Standard MIDI File. The source core is present; its full production-output native gate is pending. There is no product interface yet.
+BeatCourier is a bounded offline converter from a saved modern Ardour session's stepped tempo and meter map to a metadata-only Standard MIDI File. The production core passed its native gate. This revision adds a standalone offline UI candidate; actual browser-download acceptance is pending its hosted run.
 
-The initial compatibility checkpoint passed with official Debian13 Ardour **8.12.0+ds-1**: a literal conductor file went through the unchanged native GUI importer, native save and a fresh-process reload. [Accepted run](https://github.com/Masanori-Spec/beat-courier/actions/runs/37598034673), commit `4dcb13efa45ce161d63454ffcfcbd00d6ce9be8a`. That checkpoint used a handwritten MIDI fixture, so it does not by itself validate the new converter.
+The initial compatibility checkpoint passed with official Debian13 Ardour **8.12.0+ds-1**: a literal conductor file went through the unchanged native GUI importer, native save and a fresh-process reload. [Accepted run](https://github.com/Masanori-Spec/beat-courier/actions/runs/37598034673), commit `4dcb13efa45ce161d63454ffcfcbd00d6ce9be8a`. That first checkpoint used a handwritten MIDI fixture. The production converter then passed [run 37601909063](https://github.com/Masanori-Spec/beat-courier/actions/runs/37601909063) at commit `d7d3736d3c1ecfdb70b911be2b591db9f24cdab6`: eight actual import/reload cases, 120 native readings, all point arrays and three exact faults were independently accepted.
 
 ## Supported profile
 
@@ -17,6 +17,12 @@ The initial compatibility checkpoint passed with official Debian13 Ardour **8.12
 The inert XML parser rejects DTD/entity declarations, other processing instructions, malformed XML, namespaces, ambiguous structures and bounded-resource violations. It does not load a session into Ardour or execute anything from an input file. The native tests load only original synthetic fixtures in disposable hosted-CI directories.
 
 Ardour already exports MIDI. [ArdourMIDIExport](https://github.com/dbolton/ArdourMIDIExport) also exists and documents an initial-tempo/meter limitation. BeatCourier's modest difference is exporting all supported saved-map changes as a separate conductor. It is not a general MIDI export replacement or a claim of universal DAW compatibility. Ardour9.2 has different fractional-position import code; it is outside the executed8.12 profile.
+
+## Offline interface
+
+Open `dist/beat-courier.html` in a modern browser. Choose one saved session, review every event and tempo rounding value, confirm, then save the MIDI and JSON receipt. Japanese and English, keyboard controls, printable review and a clean offline-tool download are included. Parsing and hashing run in a bounded Web Worker that is terminated on cancellation, replacement or timeout. No session, plugin or media is executed; files are not sent to a server.
+
+The candidate browser workflow tests actual file downloads, worker/read races, same-file reselection, errors, mobile horizontal review, print and offline privacy. Its actual MIDI and receipt must then pass the same independent native eight-case gate. See [the UI acceptance contract](docs/browser-gate.md).
 
 ## Verification
 

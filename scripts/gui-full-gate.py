@@ -68,7 +68,10 @@ def main():
     fractional_map=ET.parse(fractional).getroot().find('TempoMap')
     assert [n.attrib['quarters'] for n in fractional_map.find('Tempos')].count('15:960')==1
     assert len(fractional_map.find('MusicTimes'))==0
-    subprocess.run(['node',str(HERE/'convert-fixture.mjs')],env=ui.env,check=True,timeout=30)
+    if ui.env.get('BEATCOURIER_BROWSER_INPUT')=='1':
+        subprocess.run(['python3',str(HERE/'prepare-browser-conductor.py')],env=ui.env,check=True,timeout=30)
+    else:
+        subprocess.run(['node',str(HERE/'convert-fixture.mjs')],env=ui.env,check=True,timeout=30)
     midi=oracle.prepare_controls(ROOT,ART)
     receipt=json.loads((ART/'conversion-receipt.json').read_text())
     accounting=oracle.inspect_receipt(receipt,source,ROOT/'conductor.mid')
@@ -82,7 +85,7 @@ def main():
             assert ui.sha(ROOT/'target/Target.ardour')==ui.sha(ART/'native-target-before.ardour')
         results.append(launch(mode));results.append(launch(mode,True))
     assert all(ui.sha(Path(path))==h for path,h in hashes.items()),'Original native source bytes changed'
-    (ART/'full-native-report.json').write_text(json.dumps({'status':'PRODUCTION_CONVERTER_NATIVE_ACCEPTED','productUI':'NOT_IMPLEMENTED','consumer':'Authenticated Debian Ardour8.12.0+ds-1','fixtureAuthoring':'Official native Lua TempoMap API','inputSourceSha256':ui.sha(source),'fractionalSourceSha256':ui.sha(fractional),'source':original,'midi':midi,'receiptAccounting':accounting,'cases':results,'precision':'Exact whole-quarter/tick positions; tempo microseconds rounded with explicit receipt. Q28 wall-clock drift is272 native superclocks for the positive fixture.','logCaveat':'Normal exits are required. Nonfatal GTK/GObject diagnostics are retained; no error-free-log claim.'},indent=2)+'\n')
+    (ART/'full-native-report.json').write_text(json.dumps({'status':'PRODUCTION_CONVERTER_NATIVE_ACCEPTED','productUI':'ACTUAL_BROWSER_DOWNLOAD_GATE' if ui.env.get('BEATCOURIER_BROWSER_INPUT')=='1' else 'OUTSIDE_THIS_NATIVE_GATE','consumer':'Authenticated Debian Ardour8.12.0+ds-1','fixtureAuthoring':'Official native Lua TempoMap API','inputSourceSha256':ui.sha(source),'fractionalSourceSha256':ui.sha(fractional),'source':original,'midi':midi,'receiptAccounting':accounting,'cases':results,'precision':'Exact whole-quarter/tick positions; tempo microseconds rounded with explicit receipt. Q28 wall-clock drift is272 native superclocks for the positive fixture.','logCaveat':'Normal exits are required. Nonfatal GTK/GObject diagnostics are retained; no error-free-log claim.'},indent=2)+'\n')
 try:main()
 except Exception:
     for name,path in [('failed-source',ROOT/'source/Source.ardour'),('failed-target',ROOT/'target/Target.ardour')]:

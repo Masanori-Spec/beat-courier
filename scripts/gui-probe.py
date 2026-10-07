@@ -281,7 +281,7 @@ def main():
         expose_disposable_dummy_backend()
         imported=launch('native-import',True);reloaded=launch('native-reloaded',False)
         assert sha(source)==original_hash,'Native source fixture changed'
-        (ART/'probe-report.json').write_text(json.dumps({'status':'METADATA_ONLY_NATIVE_IMPORT_ACCEPTED','productConverter':'NOT_IMPLEMENTED','productUI':'NOT_IMPLEMENTED','consumer':'Authenticated Debian Ardour 8.12.0+ds-1','fixtureAuthoring':'Official native Lua TempoMap API','fileImport':'Unchanged GUI PublicEditor::do_import via official Lua binding, SMFTempoUse, empty instrument pointer','sourceSha256':original_hash,'source':source_values,'import':imported,'freshProcessReload':reloaded},indent=2)+'\n')
+        (ART/'probe-report.json').write_text(json.dumps({'status':'METADATA_ONLY_NATIVE_IMPORT_ACCEPTED','productConverter':'NOT_EXERCISED_BY_THIS_LITERAL_MIDI_PROBE','productUI':'NOT_EXERCISED_BY_THIS_LITERAL_MIDI_PROBE','consumer':'Authenticated Debian Ardour 8.12.0+ds-1','fixtureAuthoring':'Official native Lua TempoMap API','fileImport':'Unchanged GUI PublicEditor::do_import via official Lua binding, SMFTempoUse, empty instrument pointer','sourceSha256':original_hash,'source':source_values,'import':imported,'freshProcessReload':reloaded},indent=2)+'\n')
     except Exception:
         # Preserve only the two fixed synthetic session files, even if a new native
         # schema makes the oracle fail before normal copies have been recorded.
