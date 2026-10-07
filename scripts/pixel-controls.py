@@ -13,7 +13,9 @@ def read_pixels(raw_path):
     result=subprocess.run(['tesseract',str(processed_path),'stdout','--psm','11','tsv'],check=True,text=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE,timeout=15)
     raw_path.with_suffix('.tsv').write_text(result.stdout)
     words=[]
-    for row in csv.DictReader(io.StringIO(result.stdout),delimiter='\t'):
+    # Tesseract TSV text is unquoted. A recognized quote glyph must remain a
+    # glyph rather than swallowing later rows as a CSV multiline field.
+    for row in csv.DictReader(io.StringIO(result.stdout),delimiter='\t',quoting=csv.QUOTE_NONE):
         if row['level']!='5' or not row['text'].strip():continue
         words.append({'text':row['text'],'confidence':float(row['conf']),'line':[row['block_num'],row['par_num'],row['line_num']], 'rect':[int(row[k])/3 for k in ['left','top','width','height']]})
     assert len(words)<5000,'Unexpected OCR resource use'

@@ -28,6 +28,8 @@ The first hosted run reached the normal welcome wizard and passed native fixture
 
 R3 then completed the wizard and normal first-run exit. Its actual Audio/MIDI menu omitted the bundled Dummy backend. The pinned release source filters it while `hide-dummy-backend` is true. The harness now changes only that ordinary visibility option to false in the newly native-generated `/tmp/beatcourier-native/config/ardour8/config`, while the GUI is closed. Exact before/after synthetic configuration bytes and the one-value delta are retained. This is a disposable test preference; no user profile, system setting, realtime permission, sandbox or consumer code changes. The real GUI must still select and visibly confirm None (Dummy), Normal Speed and Silence before starting.
 
+R4 visibly reached that backend and the editor, where a locked-memory informational dialog blocked the menu. The harness acknowledges only that exact observed warning through its unique native OK button. It does not change memory limits or select the dialog's “Do not show this window again” checkbox. The original screenshot and acknowledgement record remain in evidence. Tesseract TSV is parsed without CSV quote interpretation, so a recognized quotation-mark glyph cannot consume later OCR rows.
+
 ## Precision boundary
 
 Ardour 8.12's `Editor::import_smf_tempo_map` rounds MIDI pulses to whole quarter notes with `int_div_round`. The first product profile therefore must reject fractional-quarter changes, including 15.5. Ardour 9.2 instead delegates to `Evoral::SMF::tempo_map`, which constructs fractional native beat ticks. That source finding is not a runtime test of 9.2.

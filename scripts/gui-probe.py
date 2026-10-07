@@ -101,9 +101,16 @@ def initialize_profile():
             except subprocess.TimeoutExpired:proc.kill();proc.wait(timeout=10)
         log.close()
 def prepare_gui(proc,label):
+    memory_warning_seen=False
     for step in range(20):
         assert proc.poll() is None,'Official native process exited during startup'
         time.sleep(1);words=pixel_state(f'{label}-startup-{step:02d}')
+        if has(words,'maximum amount of') and has(words,'locked memory.') and has(words,'before your system runs out of memory.'):
+            assert not memory_warning_seen,'Repeated native startup warning'
+            memory_warning_seen=True
+            button=pixels.unique_phrase(words,'OK')
+            (ART/f'{label}-memory-warning-ack.json').write_text(json.dumps({'warning':'Native locked-memory informational warning','screenshot':f'{label}-startup-{step:02d}.png','observedOK':button,'action':'Physical OK click only','doNotShowAgainClicked':False,'memoryLimitChanged':False,'securitySettingsChanged':False},indent=2)+'\n')
+            click_box(button['rect']);continue
         if has(words,'Audio System:'):
             label_rect=pixels.unique_phrase(words,'Audio System:')['rect']
             current=[]
